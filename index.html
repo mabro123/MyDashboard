@@ -183,6 +183,51 @@ tr.done-row td.name-cell .task-name{text-decoration:line-through;color:#9ca3af}
 .cal-event{font-size:10px;font-weight:600;border-radius:4px;padding:2px 5px;margin-bottom:2px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;cursor:pointer}
 .week-grid{background:#fff;border-radius:14px;box-shadow:0 1px 8px rgba(0,0,0,.07);overflow:hidden}
 
+/* DEV TOOLS */
+.dev-tabs{display:flex;gap:4px;margin-bottom:20px;background:#fff;border-radius:12px;padding:6px;box-shadow:0 1px 6px rgba(0,0,0,.07);width:fit-content}
+.dev-tab{padding:8px 20px;border-radius:8px;border:none;background:transparent;font-size:13px;font-weight:600;color:#6b7280;cursor:pointer;transition:all .15s}
+.dev-tab:hover{background:#f3f4f6;color:#374151}
+.dev-tab.active{background:#1a56db;color:#fff}
+.dev-panel{display:none}
+.dev-panel.active{display:block}
+
+/* RELEASE NOTES */
+.rn-layout{display:flex;gap:20px;min-height:560px;flex-wrap:wrap}
+.rn-input-col{width:300px;flex-shrink:0;display:flex;flex-direction:column;background:#fff;border-radius:14px;box-shadow:0 1px 8px rgba(0,0,0,.07);overflow:hidden}
+.rn-output-cols{flex:1;display:flex;flex-direction:column;gap:14px;min-width:0}
+.rn-output-col{display:flex;flex-direction:column;background:#fff;border-radius:14px;box-shadow:0 1px 8px rgba(0,0,0,.07);overflow:hidden}
+.rn-col-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#f8fafc;border-bottom:2px solid #f3f4f6;font-size:13px;font-weight:700;color:#374151}
+.rn-textarea{flex:1;border:none;outline:none;padding:16px;font-size:13px;font-family:'Segoe UI',sans-serif;color:#111827;resize:none;line-height:1.6;background:#fff}
+.rn-textarea::placeholder{color:#d1d5db}
+.rn-generate-btn{margin:12px 16px;padding:10px;border-radius:10px;border:none;background:#1a56db;color:#fff;font-weight:700;font-size:13px;cursor:pointer;transition:background .15s}
+.rn-generate-btn:hover{background:#1648c0}
+.rn-clear-btn{padding:4px 10px;border-radius:6px;border:1px solid #e5e7eb;background:#fff;font-size:11px;font-weight:600;color:#6b7280;cursor:pointer}
+.rn-clear-btn:hover{background:#f3f4f6}
+.rn-copy-btn{padding:4px 10px;border-radius:6px;border:1px solid #e5e7eb;background:#fff;font-size:11px;font-weight:600;color:#6b7280;cursor:pointer}
+.rn-copy-btn:hover{background:#f3f4f6}
+.rn-copy-btn.copied{background:#d1fae5;border-color:#6ee7b7;color:#065f46}
+.rn-output{flex:1;padding:16px;overflow-y:auto;font-size:13px;line-height:1.7;color:#111827}
+.rn-placeholder{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#9ca3af}
+.rn-section{margin-bottom:18px}
+.rn-section-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;padding:4px 10px;border-radius:20px;display:inline-block}
+.rn-item{display:flex;gap:8px;align-items:flex-start;padding:5px 0;border-bottom:1px solid #f3f4f6}
+.rn-item:last-child{border-bottom:none}
+.rn-bullet{flex-shrink:0;margin-top:2px}
+.rn-version-bar{background:linear-gradient(135deg,#1a56db,#3b82f6);color:#fff;border-radius:10px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}
+.rn-version-title{font-weight:800;font-size:15px}
+.rn-version-date{font-size:11px;opacity:.8}
+
+.rn-entry{padding:14px 16px;border-bottom:2px solid #f3f4f6}
+.rn-entry:last-child{border-bottom:none}
+.rn-entry-product{font-size:12px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.6px;margin-bottom:3px}
+.rn-entry-type{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px}
+.rn-entry-title{font-size:14px;font-weight:800;color:#111827;margin-bottom:7px;line-height:1.4}
+.rn-entry-desc{font-size:13px;color:#374151;line-height:1.7}
+.rn-area-tag{font-size:11px;font-weight:700;color:#6b7280;background:#f3f4f6;border-radius:4px;padding:1px 6px;margin-right:4px}
+
+/* JIRA placeholder */
+.jira-placeholder{background:#fff;border-radius:14px;box-shadow:0 1px 8px rgba(0,0,0,.07);padding:60px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+
 /* MODALS */
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:300;align-items:center;justify-content:center}
 .overlay.open{display:flex}
@@ -207,6 +252,7 @@ tr.done-row td.name-cell .task-name{text-decoration:line-through;color:#9ca3af}
   <div class="nav-item active" onclick="showPage('home')"     id="nav-home">    <span class="nav-icon">🏠</span><span data-i18n="nav_home">Home</span></div>
   <div class="nav-item"        onclick="showPage('tasks')"    id="nav-tasks">   <span class="nav-icon">📋</span><span data-i18n="nav_tasks">Task Planner</span></div>
   <div class="nav-item"        onclick="showPage('calendar')" id="nav-calendar"><span class="nav-icon">📅</span><span data-i18n="nav_calendar">Calendar</span></div>
+  <div class="nav-item"        onclick="showPage('dev')"      id="nav-dev">     <span class="nav-icon">🛠️</span><span data-i18n="nav_dev">Dev Tools</span></div>
   <div class="nav-item"        onclick="showPage('setup')"    id="nav-setup">   <span class="nav-icon">⚙️</span><span data-i18n="nav_setup">Setup</span></div>
   <div class="nav-spacer"></div>
   <div class="lang-toggle">
@@ -327,6 +373,74 @@ tr.done-row td.name-cell .task-name{text-decoration:line-through;color:#9ca3af}
   <div id="calView"></div>
 </div>
 
+<!-- DEV TOOLS -->
+<div class="page" id="page-dev">
+  <div class="page-header">
+    <div class="page-header-text">
+      <h2>🛠️ Dev Tools</h2>
+      <p>Release notes generator and JIRA case creation.</p>
+    </div>
+  </div>
+  <!-- Sub-nav tabs -->
+  <div class="dev-tabs">
+    <button class="dev-tab active" id="devtab-relnotes" onclick="showDevTab('relnotes')">📝 Release Notes</button>
+    <button class="dev-tab"        id="devtab-jira"     onclick="showDevTab('jira')">🎫 JIRA Case</button>
+  </div>
+
+  <!-- RELEASE NOTES -->
+  <div class="dev-panel active" id="devpanel-relnotes">
+    <div class="rn-layout">
+      <!-- LEFT: input -->
+      <div class="rn-input-col">
+        <div class="rn-col-header">
+          <span>📥 Raw Input</span>
+          <button class="rn-clear-btn" onclick="clearRnInput()">Clear</button>
+        </div>
+        <textarea id="rnInput" class="rn-textarea" placeholder="Paste your raw notes here. Mention the product name naturally in your text.&#10;&#10;Example:&#10;Product: Nexstep&#10;- fixed login bug in Nexstep&#10;- added export to CSV&#10;- perf improvements on dashboard"></textarea>
+        <button class="rn-generate-btn" onclick="generateReleaseNotes()">✨ Generate Release Notes</button>
+        <div id="rnContextWarning" style="display:none;margin:0 16px 12px;padding:12px;background:#fef2f2;border-radius:10px;border:1px solid #fecaca">
+          <div style="font-size:11px;font-weight:800;color:#ef4444;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">❓ Needs More Context</div>
+          <div style="font-size:12px;color:#6b7280;margin-bottom:8px;line-height:1.6">These items are too brief for clear release notes. Add more detail and regenerate:</div>
+          <div id="rnContextList"></div>
+        </div>
+      </div>
+      <!-- RIGHT: output columns -->
+      <div class="rn-output-cols">
+        <div class="rn-output-col">
+          <div class="rn-col-header">
+            <span>🇬🇧 English</span>
+            <button class="rn-copy-btn" id="rnCopyBtn-en" onclick="copyReleaseNotes('en')">Copy</button>
+          </div>
+          <div class="rn-output" id="rnOutput-en"></div>
+        </div>
+        <div class="rn-output-col">
+          <div class="rn-col-header">
+            <span>🇳🇴 Norwegian</span>
+            <button class="rn-copy-btn" id="rnCopyBtn-no" onclick="copyReleaseNotes('no')">Copy</button>
+          </div>
+          <div class="rn-output" id="rnOutput-no"></div>
+        </div>
+        <div class="rn-output-col">
+          <div class="rn-col-header">
+            <span>🇸🇪 Swedish</span>
+            <button class="rn-copy-btn" id="rnCopyBtn-sv" onclick="copyReleaseNotes('sv')">Copy</button>
+          </div>
+          <div class="rn-output" id="rnOutput-sv"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JIRA CASE -->
+  <div class="dev-panel" id="devpanel-jira">
+    <div class="jira-placeholder">
+      <div style="font-size:40px;margin-bottom:14px">🎫</div>
+      <div style="font-weight:700;color:#374151;font-size:16px;margin-bottom:8px">JIRA Case Creation</div>
+      <div style="font-size:13px;color:#9ca3af">Coming soon — define requirements to build this module.</div>
+    </div>
+  </div>
+</div>
+
 <!-- SETUP -->
 <div class="page" id="page-setup">
   <div class="page-header">
@@ -432,7 +546,7 @@ tr.done-row td.name-cell .task-name{text-decoration:line-through;color:#9ca3af}
 // ═══════════════════════════════════════════
 const T={
   en:{
-    nav_home:'Home', nav_tasks:'Task Planner', nav_calendar:'Calendar', nav_setup:'Setup',
+    nav_home:'Home', nav_tasks:'Task Planner', nav_calendar:'Calendar', nav_dev:'Dev Tools', nav_setup:'Setup',
     hero_greeting:'Welcome back', hero_title:'Hello, Marius 👋',
     hero_sub:'Your personal dashboard — stay organised, focused, and on top of what matters most.',
     card_tasks_desc:'Organise tasks using the Eisenhower Matrix.',
@@ -490,7 +604,7 @@ const T={
     sdays:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
   },
   no:{
-    nav_home:'Hjem', nav_tasks:'Oppgaveplanner', nav_calendar:'Kalender', nav_setup:'Innstillinger',
+    nav_home:'Hjem', nav_tasks:'Oppgaveplanner', nav_calendar:'Kalender', nav_dev:'Dev-verktøy', nav_setup:'Innstillinger',
     hero_greeting:'Velkommen tilbake', hero_title:'Hei, Marius 👋',
     hero_sub:'Ditt personlige dashbord — hold deg organisert, fokusert og på toppen av det som betyr mest.',
     card_tasks_desc:'Organiser oppgaver med Eisenhower-matrisen.',
@@ -749,13 +863,13 @@ function buildTableRows(arr){
       : `<span class="cat-badge" style="background:#f3f4f6;color:#9ca3af" onclick="openTaskModal(${t2.id},'cat')">+ ${t('category')}</span>`;
     const meta=(t2.due||t2.notes)?`<div class="task-meta">${t2.due?`📆 ${t2.due}`:''}${t2.due&&t2.notes?' · ':''}${t2.notes?`💬 ${t2.notes.substring(0,40)}${t2.notes.length>40?'…':''}`:''}</div>`:'';
     return`<tr class="${t2.done?'done-row':''}">
-      <td class="name-cell"><span class="task-name-link" onclick="openTaskModal(${t2.id},'name')"><span class="task-name">${t2.name}</span>✏️</span>${meta}</td>
-      <td class="center-cell">${catHtml}</td>
-      <td class="center-cell"><div onclick="toggleT(${t2.id},'urgent',event)" style="cursor:${t2.done?'default':'pointer'}">${ck(t2.urgent,"red")}</div></td>
-      <td class="center-cell"><div onclick="toggleT(${t2.id},'important',event)" style="cursor:${t2.done?'default':'pointer'}">${ck(t2.important,"blue")}</div></td>
+      <td class="name-cell"><span class="task-name-link" onclick="event.stopPropagation();openTaskModal(${t2.id},'name')"><span class="task-name">${t2.name}</span>✏️</span>${meta}</td>
+      <td class="center-cell"><span onclick="event.stopPropagation();openTaskModal(${t2.id},'cat')">${catHtml}</span></td>
+      <td class="center-cell"><div onclick="event.stopPropagation();toggleT(${t2.id},'urgent',event)" style="cursor:${t2.done?'default':'pointer'}">${ck(t2.urgent,"red")}</div></td>
+      <td class="center-cell"><div onclick="event.stopPropagation();toggleT(${t2.id},'important',event)" style="cursor:${t2.done?'default':'pointer'}">${ck(t2.important,"blue")}</div></td>
       <td class="center-cell"><span class="badge" style="color:${q.color};background:${q.color}18">${q.emoji} ${q.label}</span></td>
-      <td class="center-cell"><div onclick="toggleT(${t2.id},'done',event)" style="cursor:pointer">${ck(t2.done,"green")}</div></td>
-      <td class="center-cell"><button class="del-btn" onclick="deleteTask(${t2.id},event)">✕</button></td>
+      <td class="center-cell"><div onclick="event.stopPropagation();toggleT(${t2.id},'done',event)" style="cursor:pointer">${ck(t2.done,"green")}</div></td>
+      <td class="center-cell"><button class="del-btn" onclick="event.stopPropagation();deleteTask(${t2.id},event)">✕</button></td>
     </tr>`;
   }).join('');
 }
@@ -1004,6 +1118,209 @@ function renderWeekCal(ww){
     </div>`;
   }).join('');
   document.getElementById('calView').innerHTML=`<div class="week-grid"><div style="display:flex;border-bottom:2px solid #f3f4f6;background:#f8fafc">${heads}</div><div style="display:flex;align-items:flex-start">${cols2}</div></div>`;
+}
+
+// ── DEV TOOLS ──
+function showDevTab(tab){
+  document.querySelectorAll('.dev-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.dev-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('devtab-'+tab).classList.add('active');
+  document.getElementById('devpanel-'+tab).classList.add('active');
+}
+
+// ── RELEASE NOTES RULES ──
+const RN_CATEGORIES=[
+  {id:'feature', label:'New Features',   color:'#1a56db', bg:'#eff6ff', bullet:'✨', keywords:['add','new','introduc','feature','implement','support for','creat','built','launch','allow','enabl','can now','able to']},
+  {id:'improve', label:'Improvements',   color:'#8b5cf6', bg:'#f5f3ff', bullet:'⚡', keywords:['improv','enhanc','updat','upgrad','optim','speed','faster','better','refin','extend','expand','perf','reduc','simplif','streamlin']},
+  {id:'fix',     label:'Bug Fixes',      color:'#f59e0b', bg:'#fffbeb', bullet:'🐛', keywords:['fix','bug','patch','resolv','correct','repair','address','broken','crash','error','issue','prevent','handl','ensure']},
+  {id:'security',label:'Security',       color:'#ef4444', bg:'#fef2f2', bullet:'🔒', keywords:['secur','vulnerab','cve','xss','injection','auth','permission','access','sanitiz','encrypt','token']},
+  {id:'other',   label:'Other Changes',  color:'#6b7280', bg:'#f9fafb', bullet:'🔧', keywords:[]},
+];
+
+// Areas used for improvements and fixes only
+const RN_AREAS=[
+  {id:'login',    label:'Login',       keywords:['login','sign in','signin','auth','password','credential','sso']},
+  {id:'dashboard',label:'Dashboard',   keywords:['dashboard','overview','home','widget','tile','summary']},
+  {id:'reports',  label:'Reports',     keywords:['report','export','csv','pdf','chart','graph','analytic']},
+  {id:'settings', label:'Settings',    keywords:['setting','config','preference','profile','account']},
+  {id:'search',   label:'Search',      keywords:['search','filter','find','query','lookup']},
+  {id:'notif',    label:'Notifications',keywords:['notif','alert','email','message','reminder']},
+  {id:'perf',     label:'Performance', keywords:['perf','speed','fast','slow','load','latency','memory','cpu','cache']},
+  {id:'api',      label:'API',         keywords:['api','endpoint','webhook','integrat','rest','graphql']},
+];
+
+// Banned phrases (rules 9, 10, 12)
+const RN_BANNED=[
+  /\bnow\b/gi,
+  /this new feature/gi,
+  /we have fixed/gi,
+  /we have updated/gi,
+  /now includes/gi,
+  /no longer/gi,
+  /has been (fixed|updated|improved|added|removed|changed)/gi,
+  /have been (fixed|updated|improved|added|removed|changed)/gi,
+  /was (fixed|updated|improved|added|removed|changed)/gi,
+  /were (fixed|updated|improved|added|removed|changed)/gi,
+  /is (now|no longer)/gi,
+  /are (now|no longer)/gi,
+];
+
+// Past tense → present tense common rewrites
+const RN_TENSE=[
+  [/\bfixed\b/gi,'fixes'],
+  [/\badded\b/gi,'adds'],
+  [/\bupdated\b/gi,'updates'],
+  [/\bimproved\b/gi,'improves'],
+  [/\bchanged\b/gi,'changes'],
+  [/\bremoved\b/gi,'removes'],
+  [/\breduced\b/gi,'reduces'],
+  [/\bintroduced\b/gi,'introduces'],
+  [/\bimplemented\b/gi,'implements'],
+  [/\bcreated\b/gi,'creates'],
+  [/\bbuilt\b/gi,'builds'],
+  [/\boptimised\b/gi,'optimises'],
+  [/\boptimized\b/gi,'optimizes'],
+  [/\bresolved\b/gi,'resolves'],
+  [/\bpatched\b/gi,'patches'],
+  [/\bextended\b/gi,'extends'],
+  [/\benabled\b/gi,'enables'],
+  [/\ballowed\b/gi,'allows'],
+  [/\bsupported\b/gi,'supports'],
+  [/\bexpanded\b/gi,'expands'],
+  [/\bsimplified\b/gi,'simplifies'],
+];
+
+function rnClassify(line){
+  const low=line.toLowerCase();
+  for(const cat of RN_CATEGORIES){
+    if(cat.id==='other')continue;
+    if(cat.keywords.some(k=>low.includes(k)))return cat.id;
+  }
+  return'other';
+}
+
+function rnArea(line){
+  const low=line.toLowerCase();
+  for(const a of RN_AREAS){
+    if(a.keywords.some(k=>low.includes(k)))return a.label;
+  }
+  return null;
+}
+
+function rnClean(line){
+  // Strip common prefixes
+  line=line.replace(/^[-*•]\s+/,'').replace(/^(\d+\.)\s+/,'').replace(/^[a-f0-9]{7,40}\s+/i,'').trim();
+  // Apply present-tense rewrites
+  RN_TENSE.forEach(([re,rep])=>{line=line.replace(re,rep);});
+  // Remove banned phrases (replace with empty, then tidy whitespace)
+  RN_BANNED.forEach(re=>{line=line.replace(re,'');});
+  // Tidy double spaces
+  line=line.replace(/\s{2,}/g,' ').trim();
+  // Capitalise first letter, ensure ends with period
+  if(!line)return'';
+  return line.charAt(0).toUpperCase()+line.slice(1).replace(/[.!?]*$/,'.')+' ';
+}
+
+// Detect lines that are unclear / too short to rewrite confidently
+function rnNeedsContext(line){
+  const low=line.toLowerCase().trim();
+  // Single word, very short, or vague
+  if(low.split(' ').length<=2)return true;
+  const vague=['misc','various','changes','updates','fixes','improvements','other','done','completed','wip'];
+  if(vague.includes(low.replace(/[^a-z]/g,'')))return true;
+  return false;
+}
+
+function generateReleaseNotes(){
+  const raw=document.getElementById('rnInput').value.trim();
+  const out=document.getElementById('rnOutput');
+  if(!raw){
+    out.innerHTML=`<div class="rn-placeholder"><div style="font-size:28px;margin-bottom:10px">✏️</div><div style="color:#ef4444;font-weight:700">No input provided</div><div style="font-size:12px;color:#9ca3af;margin-top:6px">Paste some text on the left first.</div></div>`;
+    return;
+  }
+
+  const rawLines=raw.split('\n').map(l=>l.trim()).filter(l=>l.length>1);
+  if(!rawLines.length){
+    out.innerHTML=`<div class="rn-placeholder"><div style="font-size:28px;margin-bottom:10px">🤔</div><div style="color:#f59e0b;font-weight:700">Nothing to parse</div><div style="font-size:12px;color:#9ca3af;margin-top:6px">Try adding more descriptive lines.</div></div>`;
+    return;
+  }
+
+  // Separate unclear lines
+  const unclear=[], clear=[];
+  rawLines.forEach(l=>{
+    const stripped=l.replace(/^[-*•]\s+/,'').replace(/^(\d+\.)\s+/,'').trim();
+    if(rnNeedsContext(stripped)) unclear.push(stripped);
+    else clear.push(l);
+  });
+
+  // Group clear lines by category
+  const groups={};
+  RN_CATEGORIES.forEach(c=>groups[c.id]=[]);
+  clear.forEach(l=>{
+    const cleaned=rnClean(l);
+    if(!cleaned)return;
+    const cat=rnClassify(l);
+    const area=(cat==='improve'||cat==='fix')?rnArea(l):null;
+    groups[cat].push({text:cleaned,area});
+  });
+
+  const today=new Date();
+  const dateStr=today.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  let html=`<div class="rn-version-bar"><div class="rn-version-title">Release Notes</div><div class="rn-version-date">${dateStr}</div></div>`;
+
+  // Unclear lines — ask for more context (rule 11)
+  if(unclear.length){
+    html+=`<div class="rn-section">
+      <div class="rn-section-title" style="color:#ef4444;background:#fef2f2">❓ Needs More Context</div>
+      <div style="font-size:12px;color:#6b7280;margin-bottom:8px;line-height:1.6">The following items are too brief to write clear customer-facing notes. Please add more detail and regenerate:</div>
+      ${unclear.map(l=>`<div class="rn-item"><span class="rn-bullet">•</span><span style="color:#ef4444;font-style:italic">${l}</span></div>`).join('')}
+    </div>`;
+  }
+
+  let hasContent=false;
+  RN_CATEGORIES.forEach(cat=>{
+    const items=groups[cat.id];
+    if(!items.length)return;
+    hasContent=true;
+    html+=`<div class="rn-section">
+      <div class="rn-section-title" style="color:${cat.color};background:${cat.bg}">${cat.bullet} ${cat.label}</div>
+      ${items.map(({text,area})=>`
+        <div class="rn-item">
+          <span class="rn-bullet">${cat.bullet}</span>
+          <span>${area?`<span class="rn-area-tag">${area}:</span> `:''}${text}</span>
+        </div>`).join('')}
+    </div>`;
+  });
+
+  if(!hasContent&&!unclear.length){
+    html+=`<div class="rn-placeholder"><div style="font-size:28px;margin-bottom:10px">🤷</div><div style="font-weight:700;color:#374151">Could not categorise input</div><div style="font-size:12px;color:#9ca3af;margin-top:6px">Try adding more descriptive text.</div></div>`;
+  }
+
+  out.innerHTML=html;
+  document.getElementById('rnCopyBtn').classList.remove('copied');
+  document.getElementById('rnCopyBtn').textContent='Copy';
+}
+
+function clearRnInput(){
+  document.getElementById('rnInput').value='';
+  document.getElementById('rnOutput').innerHTML=`<div class="rn-placeholder"><div style="font-size:32px;margin-bottom:12px">📝</div><div style="font-weight:700;color:#374151;margin-bottom:6px">No release notes yet</div><div style="font-size:12px;color:#9ca3af">Paste your raw input on the left and click<br><strong>Generate Release Notes</strong></div></div>`;
+  document.getElementById('rnCopyBtn').classList.remove('copied');
+  document.getElementById('rnCopyBtn').textContent='Copy';
+}
+
+function copyReleaseNotes(){
+  const el=document.getElementById('rnOutput');
+  const text=[...el.querySelectorAll('.rn-section')].map(sec=>{
+    const title=sec.querySelector('.rn-section-title').textContent;
+    const items=[...sec.querySelectorAll('.rn-item span:last-child')].map(i=>'  • '+i.textContent).join('\n');
+    return title+'\n'+items;
+  }).join('\n\n');
+  if(!text.trim())return;
+  navigator.clipboard.writeText(text).then(()=>{
+    const btn=document.getElementById('rnCopyBtn');
+    btn.textContent='✓ Copied!';btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied');},2000);
+  });
 }
 
 // ── INIT ──
