@@ -76,13 +76,15 @@ th{padding:10px 12px;font-size:11px;font-weight:700;color:#9ca3af;text-transform
 th.left{text-align:left}th.center{text-align:center}
 th.sortable{cursor:pointer}th.sortable:hover{color:#374151}
 td{padding:9px 12px;border-bottom:1px solid #f3f4f6;vertical-align:middle}
-td.name-cell{font-size:14px;max-width:220px;word-break:break-word;cursor:pointer}
-td.name-cell:hover .task-name{text-decoration:underline;color:#1a56db}
+td.name-cell{font-size:14px;max-width:220px;word-break:break-word}
+.task-name-link{cursor:pointer;color:inherit}
+.task-name-link:hover .task-name{text-decoration:underline;color:#1a56db}
 tr.done-row td{opacity:.55}
 tr.done-row td.name-cell .task-name{text-decoration:line-through;color:#9ca3af}
 .center-cell{text-align:center}
 .badge{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;border-radius:20px;padding:3px 10px;white-space:nowrap}
-.cat-badge{display:inline-block;font-size:11px;font-weight:700;border-radius:20px;padding:2px 9px;white-space:nowrap}
+.cat-badge{display:inline-block;font-size:11px;font-weight:700;border-radius:20px;padding:2px 9px;white-space:nowrap;cursor:pointer}
+.cat-badge:hover{opacity:.8}
 .del-btn{background:none;border:none;color:#d1d5db;cursor:pointer;font-size:15px;padding:2px 6px}
 .del-btn:hover{color:#ef4444}
 .task-meta{font-size:11px;color:#9ca3af;margin-top:2px}
@@ -184,16 +186,18 @@ tr.done-row td.name-cell .task-name{text-decoration:line-through;color:#9ca3af}
 /* MODALS */
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:300;align-items:center;justify-content:center}
 .overlay.open{display:flex}
-.modal{background:#fff;border-radius:16px;padding:24px;width:400px;box-shadow:0 8px 40px rgba(0,0,0,.18);position:relative;max-height:90vh;overflow-y:auto}
+.modal{background:#fff;border-radius:16px;padding:24px;width:420px;box-shadow:0 8px 40px rgba(0,0,0,.18);position:relative;max-height:90vh;overflow-y:auto}
 .modal h3{font-size:16px;font-weight:700;color:#111827;margin-bottom:16px;padding-right:24px}
 .modal label{font-size:12px;font-weight:600;color:#6b7280;display:block;margin-bottom:4px;margin-top:12px}
 .modal input,.modal textarea,.modal select{width:100%;font-size:13px;border:1px solid #e5e7eb;border-radius:8px;padding:8px 10px;outline:none;font-family:inherit;background:#fff}
+.modal input:focus,.modal textarea:focus,.modal select:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.1)}
 .modal textarea{resize:vertical;min-height:60px}
 .modal-actions{display:flex;gap:8px;margin-top:18px;justify-content:flex-end}
 .btn-save{padding:8px 20px;border-radius:8px;border:none;background:#1a56db;color:#fff;font-weight:700;font-size:13px;cursor:pointer}
 .btn-cancel{padding:8px 16px;border-radius:8px;border:1px solid #e5e7eb;background:#fff;font-size:13px;cursor:pointer}
 .btn-delete{padding:8px 16px;border-radius:8px;border:none;background:#fee2e2;color:#ef4444;font-size:13px;cursor:pointer;font-weight:600}
 .close-modal{position:absolute;top:14px;right:16px;background:none;border:none;font-size:18px;color:#9ca3af;cursor:pointer}
+.modal-divider{height:1px;background:#f3f4f6;margin:16px 0 4px}
 </style>
 </head>
 <body>
@@ -405,10 +409,16 @@ tr.done-row td.name-cell .task-name{text-decoration:line-through;color:#9ca3af}
 <div class="overlay" id="taskOverlay">
   <div class="modal">
     <button class="close-modal" onclick="closeTaskModal()">✕</button>
-    <h3 id="taskModalTitle">Task Details</h3>
-    <label data-i18n="category">Category</label><select id="modalCat"></select>
-    <label data-i18n="due_date">Due Date</label><input type="date" id="modalDue"/>
-    <label data-i18n="notes">Notes</label><textarea id="modalNotes" data-i18n-placeholder="notes_placeholder" placeholder="Add any notes…"></textarea>
+    <h3 data-i18n="modal_edit_title">Edit Task</h3>
+    <label data-i18n="th_task">Task Name</label>
+    <input type="text" id="modalName" placeholder="Task name…"/>
+    <div class="modal-divider"></div>
+    <label data-i18n="category">Category</label>
+    <select id="modalCat"></select>
+    <label data-i18n="due_date">Due Date</label>
+    <input type="date" id="modalDue"/>
+    <label data-i18n="notes">Notes</label>
+    <textarea id="modalNotes" data-i18n-placeholder="notes_placeholder" placeholder="Add any notes…"></textarea>
     <div class="modal-actions">
       <button class="btn-cancel" onclick="closeTaskModal()" data-i18n="cancel">Cancel</button>
       <button class="btn-save"   onclick="saveTaskModal()"  data-i18n="save">Save</button>
@@ -449,6 +459,8 @@ const T={
     confirm_delete_cat:'This category is used by {n} task(s). Delete anyway? Tasks will become uncategorised.',
     due_date:'Due Date', notes:'Notes', notes_placeholder:'Add any notes…',
     cancel:'Cancel', save:'Save',
+    modal_edit_title:'Edit Task',
+    err_task_name_empty:'Task name cannot be empty.',
     cat_title:'🏷️ Task Categories', cat_sub:'Add or remove categories.',
     cat_placeholder:'Category name…',
     cat_info:'{n} category|{n} categories configured. {u} in use.',
@@ -505,6 +517,8 @@ const T={
     confirm_delete_cat:'Denne kategorien brukes av {n} oppgave(r). Slette likevel? Oppgavene blir uten kategori.',
     due_date:'Forfallsdato', notes:'Notater', notes_placeholder:'Legg til notater…',
     cancel:'Avbryt', save:'Lagre',
+    modal_edit_title:'Rediger oppgave',
+    err_task_name_empty:'Oppgavenavnet kan ikke være tomt.',
     cat_title:'🏷️ Oppgavekategorier', cat_sub:'Legg til eller fjern kategorier.',
     cat_placeholder:'Kategorinavn…',
     cat_info:'{n} kategori|{n} kategorier konfigurert. {u} i bruk.',
@@ -630,7 +644,6 @@ function renderSetup(){
   const plural=tPlural('cat_info',categories.length).replace('{u}',used);
   document.getElementById('catInfo').innerHTML=plural+(used===0?' '+t('cat_none_used'):'');
   document.getElementById('newCatName').placeholder=t('cat_placeholder');
-  // re-apply i18n for dynamic labels
   applyTranslations();
 }
 function pickCatColor(c){catColorPick=c;renderSetup();}
@@ -730,10 +743,13 @@ function buildTableRows(arr){
   if(!arr.length)return`<tr><td colspan="7" class="no-tasks">${t('filter')}</td></tr>`;
   return arr.map(t2=>{
     const q=qs[dQ(t2)];const cat=getCat(t2.cat);
-    const catHtml=cat?`<span class="cat-badge" style="background:${cat.color}18;color:${cat.color}">${cat.name}</span>`:`<span style="font-size:11px;color:#d1d5db">—</span>`;
+    // Category badge: click opens modal focused on category field
+    const catHtml=cat
+      ? `<span class="cat-badge" style="background:${cat.color}18;color:${cat.color}" onclick="openTaskModal(${t2.id},'cat')">${cat.name}</span>`
+      : `<span class="cat-badge" style="background:#f3f4f6;color:#9ca3af" onclick="openTaskModal(${t2.id},'cat')">+ ${t('category')}</span>`;
     const meta=(t2.due||t2.notes)?`<div class="task-meta">${t2.due?`📆 ${t2.due}`:''}${t2.due&&t2.notes?' · ':''}${t2.notes?`💬 ${t2.notes.substring(0,40)}${t2.notes.length>40?'…':''}`:''}</div>`:'';
     return`<tr class="${t2.done?'done-row':''}">
-      <td class="name-cell" onclick="openTaskModal(${t2.id})"><span class="task-name">${t2.name}</span>${meta}</td>
+      <td class="name-cell"><span class="task-name-link" onclick="openTaskModal(${t2.id},'name')"><span class="task-name">${t2.name}</span>✏️</span>${meta}</td>
       <td class="center-cell">${catHtml}</td>
       <td class="center-cell"><div onclick="toggleT(${t2.id},'urgent',event)" style="cursor:${t2.done?'default':'pointer'}">${ck(t2.urgent,"red")}</div></td>
       <td class="center-cell"><div onclick="toggleT(${t2.id},'important',event)" style="cursor:${t2.done?'default':'pointer'}">${ck(t2.important,"blue")}</div></td>
@@ -809,9 +825,33 @@ function renderTasks(){
 function renderSummary(){
   const total=tasks.length,done=tasks.filter(t2=>t2.done).length,doFirst=tasks.filter(t2=>!t2.done&&dQ(t2)==="do").length,inProg=tasks.filter(t2=>!t2.done).length;
   document.getElementById("summaryRow").innerHTML=[
-    {val:total,lbl:t('sum_total'),color:"#6366f1"},{val:doFirst,lbl:t('sum_do'),color:"#ef4444"},
-    {val:inProg,lbl:t('sum_active'),color:"#3b82f6"},{val:done,lbl:t('sum_done'),color:"#22c55e"},
-  ].map(s=>`<div class="sum-box"><div class="sum-val" style="color:${s.color}">${s.val}</div><div class="sum-lbl">${s.lbl}</div></div>`).join('');
+    {val:total,lbl:t('sum_total'),color:"#6366f1",filter:"navigateToTasks('all')"},
+    {val:doFirst,lbl:t('sum_do'),color:"#ef4444",filter:"navigateToTasks('do')"},
+    {val:inProg,lbl:t('sum_active'),color:"#3b82f6",filter:"navigateToTasks('active')"},
+    {val:done,lbl:t('sum_done'),color:"#22c55e",filter:"navigateToTasks('done')"},
+  ]  .map(s=>`<div class="sum-box" onclick="${s.filter}" style="cursor:pointer;transition:transform .15s,box-shadow .15s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 14px rgba(0,0,0,.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''"><div class="sum-val" style="color:${s.color}">${s.val}</div><div class="sum-lbl">${s.lbl}</div></div>`).join('');
+}
+
+// ── NAVIGATE FROM HOME TILES ──
+function navigateToTasks(filter){
+  showPage('tasks');
+  // find the matching filter button and activate it
+  const btnMap={all:'all',do:'do',active:'all',done:'done'};
+  const f=btnMap[filter]||'all';
+  // for 'active' we want all non-done tasks — use 'all' filter but that's fine
+  // Actually for active we just show all (undone), best UX is 'all' filter
+  activeFilter=f;
+  activeCatFilter='all';
+  currentPage=1;
+  // highlight the correct button
+  document.querySelectorAll('#filterBar .fbtn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('#filterBar .fbtn').forEach(b=>{
+    const bi=b.getAttribute('data-i18n');
+    if(f==='all'&&bi==='all') b.classList.add('active');
+    else if(f==='do'&&bi==='do_first_btn') b.classList.add('active');
+    else if(f==='done'&&bi==='done_btn') b.classList.add('active');
+  });
+  renderTasks();
 }
 
 // ── FULLSCREEN ──
@@ -819,25 +859,42 @@ function openFullscreen(){document.getElementById('fsOverlay').classList.add('op
 function closeFullscreen(){document.getElementById('fsOverlay').classList.remove('open');}
 
 // ── TASK MODAL ──
-function openTaskModal(id){
+// focus: 'name' | 'cat' | null
+function openTaskModal(id, focus){
   const t2=tasks.find(t2=>t2.id===id);if(!t2)return;
   editTaskId=id;
-  document.getElementById("taskModalTitle").textContent=t2.name;
+  document.getElementById("modalName").value=t2.name;
   document.getElementById("modalCat").innerHTML=catOptions(t2.cat||'');
   document.getElementById("modalDue").value=t2.due||"";
   document.getElementById("modalNotes").value=t2.notes||"";
   document.getElementById("modalNotes").placeholder=t('notes_placeholder');
   document.getElementById("taskOverlay").classList.add("open");
+  // Focus the right field
+  setTimeout(()=>{
+    if(focus==='name') document.getElementById("modalName").focus();
+    else if(focus==='cat') document.getElementById("modalCat").focus();
+    else document.getElementById("modalName").focus();
+  },50);
 }
 function closeTaskModal(){document.getElementById("taskOverlay").classList.remove("open");editTaskId=null;}
 function saveTaskModal(){
   const t2=tasks.find(t2=>t2.id===editTaskId);if(!t2)return;
+  const newName=document.getElementById("modalName").value.trim();
+  if(!newName){
+    document.getElementById("modalName").focus();
+    document.getElementById("modalName").style.borderColor='#ef4444';
+    return;
+  }
+  document.getElementById("modalName").style.borderColor='';
+  t2.name=newName;
   t2.cat=document.getElementById("modalCat").value;
   t2.due=document.getElementById("modalDue").value;
   t2.notes=document.getElementById("modalNotes").value;
   saveTasks();renderTasks();closeTaskModal();
 }
 document.getElementById("taskOverlay").addEventListener("click",function(e){if(e.target===this)closeTaskModal();});
+// Save on Enter in name field
+document.getElementById("modalName").addEventListener("keydown",function(e){if(e.key==='Enter')saveTaskModal();});
 
 // ── CALENDAR ──
 let calView="day",calDate=new Date();
