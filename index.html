@@ -14,6 +14,11 @@ nav{background:#1a1f36;display:flex;align-items:center;padding:0 24px;height:56p
 .nav-item:hover{color:#fff}
 .nav-item.active{color:#fff;border-bottom-color:#3b82f6}
 .nav-icon{margin-right:7px;font-size:15px}
+.nav-spacer{flex:1}
+.lang-toggle{display:flex;align-items:center;gap:0;background:rgba(255,255,255,.08);border-radius:20px;padding:3px;border:1px solid rgba(255,255,255,.12)}
+.lang-btn{padding:4px 12px;border-radius:16px;border:none;background:transparent;color:#94a3b8;font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;letter-spacing:.3px}
+.lang-btn.active{background:#3b82f6;color:#fff}
+.lang-btn:hover:not(.active){color:#fff}
 .page{display:none;flex:1;padding:32px 28px;max-width:1280px;margin:0 auto;width:100%}
 .page.active{display:block}
 
@@ -25,7 +30,7 @@ nav{background:#1a1f36;display:flex;align-items:center;padding:0 24px;height:56p
 .hero-sub{font-size:15px;opacity:.8;max-width:480px;line-height:1.6}
 .hero-date{margin-top:20px;font-size:12px;opacity:.6}
 .quick-cards{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:28px}
-.qcard{flex:1;min-width:200px;background:#fff;border-radius:14px;padding:20px;box-shadow:0 1px 8px rgba(0,0,0,.07);cursor:pointer;transition:transform .15s,box-shadow .15s;border-top:4px solid}
+.qcard{flex:1;min-width:180px;background:#fff;border-radius:14px;padding:20px;box-shadow:0 1px 8px rgba(0,0,0,.07);cursor:pointer;transition:transform .15s,box-shadow .15s;border-top:4px solid}
 .qcard:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
 .qcard-icon{font-size:26px;margin-bottom:10px}
 .qcard-title{font-size:14px;font-weight:700;color:#111827;margin-bottom:4px}
@@ -44,22 +49,25 @@ nav{background:#1a1f36;display:flex;align-items:center;padding:0 24px;height:56p
 .fullscreen-btn{padding:8px 16px;border-radius:8px;border:1px solid #e5e7eb;background:#fff;font-size:13px;font-weight:600;color:#374151;cursor:pointer;display:flex;align-items:center;gap:6px;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.06)}
 .fullscreen-btn:hover{background:#f3f4f6}
 
-/* TASK CARD */
+/* CARDS */
 .card{background:#fff;border-radius:14px;box-shadow:0 1px 8px rgba(0,0,0,.07);overflow:hidden;margin-bottom:20px}
 .add-row{display:flex;gap:8px;padding:12px 14px;background:#fafafa;border-bottom:2px solid #f3f4f6;align-items:center;flex-wrap:wrap}
-.add-row input{flex:1;min-width:160px;font-size:13px;border:1px solid #e5e7eb;border-radius:8px;padding:7px 10px;outline:none}
-.add-row .add-btn{padding:7px 18px;border-radius:8px;border:none;background:#1a56db;color:#fff;font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap}
+.add-row input,.add-row select{font-size:13px;border:1px solid #e5e7eb;border-radius:8px;padding:7px 10px;outline:none;background:#fff}
+.add-row input{flex:2;min-width:140px}
+.add-row select{flex:1;min-width:120px}
+.add-btn{padding:7px 18px;border-radius:8px;border:none;background:#1a56db;color:#fff;font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap}
 
 /* FILTER BAR */
 .filter-bar{display:flex;gap:6px;padding:10px 14px;border-bottom:1px solid #f3f4f6;flex-wrap:wrap;align-items:center;background:#fafafa}
-.filter-bar-label{font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;margin-right:4px}
+.filter-bar-label{font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;margin-right:4px;white-space:nowrap}
 .fbtn{padding:4px 12px;border-radius:20px;border:1px solid #e5e7eb;background:#fff;font-size:12px;font-weight:600;color:#6b7280;cursor:pointer;transition:all .15s;white-space:nowrap}
 .fbtn:hover{background:#f3f4f6}
 .fbtn.active{background:#1a56db;color:#fff;border-color:#1a56db}
 .fbtn.f-urgent.active{background:#ef4444;border-color:#ef4444}
 .fbtn.f-important.active{background:#3b82f6;border-color:#3b82f6}
 .fbtn.f-done.active{background:#22c55e;border-color:#22c55e}
-.filter-sep{width:1px;height:20px;background:#e5e7eb;margin:0 4px}
+.filter-sep{width:1px;height:20px;background:#e5e7eb;margin:0 2px;flex-shrink:0}
+.filter-cat-select{font-size:12px;border:1px solid #e5e7eb;border-radius:20px;padding:4px 10px;color:#374151;background:#fff;cursor:pointer;font-weight:600}
 
 /* TABLE */
 table{width:100%;border-collapse:collapse}
@@ -68,12 +76,13 @@ th{padding:10px 12px;font-size:11px;font-weight:700;color:#9ca3af;text-transform
 th.left{text-align:left}th.center{text-align:center}
 th.sortable{cursor:pointer}th.sortable:hover{color:#374151}
 td{padding:9px 12px;border-bottom:1px solid #f3f4f6;vertical-align:middle}
-td.name-cell{font-size:14px;max-width:260px;word-break:break-word;cursor:pointer}
+td.name-cell{font-size:14px;max-width:220px;word-break:break-word;cursor:pointer}
 td.name-cell:hover .task-name{text-decoration:underline;color:#1a56db}
 tr.done-row td{opacity:.55}
 tr.done-row td.name-cell .task-name{text-decoration:line-through;color:#9ca3af}
 .center-cell{text-align:center}
 .badge{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;border-radius:20px;padding:3px 10px;white-space:nowrap}
+.cat-badge{display:inline-block;font-size:11px;font-weight:700;border-radius:20px;padding:2px 9px;white-space:nowrap}
 .del-btn{background:none;border:none;color:#d1d5db;cursor:pointer;font-size:15px;padding:2px 6px}
 .del-btn:hover{color:#ef4444}
 .task-meta{font-size:11px;color:#9ca3af;margin-top:2px}
@@ -103,7 +112,7 @@ tr.done-row td.name-cell .task-name{text-decoration:line-through;color:#9ca3af}
 
 /* MATRIX */
 .matrix{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
-.qbox{flex:1;min-width:140px;border-radius:12px;border:2px solid;padding:10px;min-height:200px;display:flex;flex-direction:column}
+.qbox{flex:1;min-width:140px;border-radius:12px;border:2px solid;padding:10px;min-height:180px;display:flex;flex-direction:column}
 .qbox-header{text-align:center;padding-bottom:8px;margin-bottom:8px;border-bottom:2px solid rgba(0,0,0,.08)}
 .qbox-emoji{font-size:18px}.qbox-label{font-size:12px;font-weight:800;margin-top:2px}
 .qbox-tag{font-size:9px;color:#9ca3af;margin-top:2px;line-height:1.3}
@@ -112,7 +121,7 @@ tr.done-row td.name-cell .task-name{text-decoration:line-through;color:#9ca3af}
 .qtask.done-task{color:#9ca3af;text-decoration:line-through}
 .empty{font-size:11px;color:#d1d5db;text-align:center;padding-top:12px}
 
-/* FULLSCREEN OVERLAY */
+/* FULLSCREEN */
 .fs-overlay{display:none;position:fixed;inset:0;background:#f1f5f9;z-index:200;flex-direction:column;overflow:hidden}
 .fs-overlay.open{display:flex}
 .fs-nav{background:#1a1f36;display:flex;align-items:center;padding:0 24px;height:52px;gap:12px;flex-shrink:0}
@@ -120,10 +129,32 @@ tr.done-row td.name-cell .task-name{text-decoration:line-through;color:#9ca3af}
 .fs-close{padding:6px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;font-size:13px;font-weight:600;cursor:pointer}
 .fs-close:hover{background:rgba(255,255,255,.1)}
 .fs-body{flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:16px}
-.fs-add-row{display:flex;gap:8px;align-items:center;background:#fff;border-radius:12px;padding:12px 14px;box-shadow:0 1px 6px rgba(0,0,0,.07)}
-.fs-add-row input{flex:1;font-size:14px;border:1px solid #e5e7eb;border-radius:8px;padding:8px 12px;outline:none}
-.fs-add-row .add-btn{padding:8px 20px;border-radius:8px;border:none;background:#1a56db;color:#fff;font-weight:700;font-size:13px;cursor:pointer}
+.fs-add-row{display:flex;gap:8px;align-items:center;background:#fff;border-radius:12px;padding:12px 14px;box-shadow:0 1px 6px rgba(0,0,0,.07);flex-wrap:wrap}
+.fs-add-row input,.fs-add-row select{font-size:13px;border:1px solid #e5e7eb;border-radius:8px;padding:8px 10px;outline:none;background:#fff}
+.fs-add-row input{flex:2;min-width:140px}
+.fs-add-row select{flex:1;min-width:120px}
 .fs-card{background:#fff;border-radius:12px;box-shadow:0 1px 6px rgba(0,0,0,.07);overflow:hidden}
+
+/* SETUP */
+.setup-grid{display:flex;gap:20px;flex-wrap:wrap}
+.setup-section{flex:1;min-width:280px;background:#fff;border-radius:14px;box-shadow:0 1px 8px rgba(0,0,0,.07);overflow:hidden}
+.setup-section-header{padding:16px 20px;border-bottom:2px solid #f3f4f6;background:#f8fafc}
+.setup-section-header h3{font-size:14px;font-weight:800;color:#111827}
+.setup-section-header p{font-size:12px;color:#6b7280;margin-top:2px}
+.setup-list{padding:12px 16px;display:flex;flex-direction:column;gap:8px;min-height:60px}
+.setup-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:10px;border:1px solid #f3f4f6;background:#fafafa}
+.setup-item-color{width:14px;height:14px;border-radius:50%;flex-shrink:0}
+.setup-item-name{flex:1;font-size:13px;font-weight:600;color:#111827}
+.setup-item-del{background:none;border:none;color:#d1d5db;cursor:pointer;font-size:14px;padding:2px 5px;border-radius:5px}
+.setup-item-del:hover{color:#ef4444;background:#fee2e2}
+.setup-add-row{display:flex;gap:8px;padding:12px 16px;border-top:1px solid #f3f4f6;background:#fafafa;flex-wrap:wrap;align-items:center}
+.setup-add-row input{flex:1;min-width:120px;font-size:13px;border:1px solid #e5e7eb;border-radius:8px;padding:7px 10px;outline:none}
+.setup-add-row .add-btn{padding:7px 14px;border-radius:8px;border:none;background:#1a56db;color:#fff;font-weight:700;font-size:12px;cursor:pointer}
+.setup-empty{font-size:12px;color:#d1d5db;text-align:center;padding:16px 0}
+.color-picker-row{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.cp-dot{width:22px;height:22px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:border .1s;flex-shrink:0}
+.cp-dot.sel{border-color:#1a1f36}
+.setup-info{padding:14px 16px;background:#eff6ff;border-radius:10px;font-size:12px;color:#1e40af;line-height:1.6;margin:0 16px 16px}
 
 /* CALENDAR */
 .cal-toolbar{display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap}
@@ -149,78 +180,66 @@ tr.done-row td.name-cell .task-name{text-decoration:line-through;color:#9ca3af}
 .day-num{font-size:13px;font-weight:600;color:#374151;width:24px;height:24px;display:flex;align-items:center;justify-content:center;margin-bottom:4px}
 .cal-event{font-size:10px;font-weight:600;border-radius:4px;padding:2px 5px;margin-bottom:2px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;cursor:pointer}
 .week-grid{background:#fff;border-radius:14px;box-shadow:0 1px 8px rgba(0,0,0,.07);overflow:hidden}
-.week-header{display:grid;grid-template-columns:56px repeat(7,1fr);border-bottom:2px solid #f3f4f6;background:#f8fafc}
-.week-header-workweek{grid-template-columns:56px repeat(5,1fr)}
-.week-col-head{padding:10px 6px;text-align:center;font-size:12px;font-weight:700;color:#6b7280}
-.week-col-head.today-head{color:#1a56db}
-.week-col-head .wdate{font-size:20px;font-weight:800;width:32px;height:32px;display:flex;align-items:center;justify-content:center;margin:4px auto 0}
-.week-col-head .wdate.today-date{background:#1a56db;color:#fff;border-radius:50%}
-.week-body{display:grid;grid-template-columns:56px repeat(7,1fr);max-height:560px;overflow-y:auto}
-.week-body-workweek{grid-template-columns:56px repeat(5,1fr)}
-.time-col{border-right:1px solid #f3f4f6}
-.time-slot{height:48px;border-bottom:1px solid #f8f9fb;padding:0 6px;font-size:10px;color:#9ca3af;display:flex;align-items:flex-start;padding-top:2px}
-.day-col{border-right:1px solid #f3f4f6;position:relative}
-.day-slot{height:48px;border-bottom:1px solid #f8f9fb;cursor:pointer;transition:background .1s}
-.day-slot:hover{background:#f0f4ff}
-.day-slot.today-col{background:#fafcff}
-.week-event{position:absolute;left:2px;right:2px;border-radius:5px;padding:2px 5px;font-size:10px;font-weight:600;overflow:hidden;cursor:pointer;z-index:2}
-.day-grid{background:#fff;border-radius:14px;box-shadow:0 1px 8px rgba(0,0,0,.07);overflow:hidden}
-.day-header{padding:16px 20px;border-bottom:2px solid #f3f4f6;background:#f8fafc}
-.day-header h3{font-size:16px;font-weight:800;color:#111827}
-.day-body{display:grid;grid-template-columns:56px 1fr;max-height:600px;overflow-y:auto}
-.day-slot-wrap{position:relative;height:48px;border-bottom:1px solid #f8f9fb;cursor:pointer;transition:background .1s}
-.day-slot-wrap:hover{background:#f0f4ff}
 
 /* MODALS */
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:300;align-items:center;justify-content:center}
 .overlay.open{display:flex}
-.modal{background:#fff;border-radius:16px;padding:24px;width:380px;box-shadow:0 8px 40px rgba(0,0,0,.18);position:relative;max-height:90vh;overflow-y:auto}
+.modal{background:#fff;border-radius:16px;padding:24px;width:400px;box-shadow:0 8px 40px rgba(0,0,0,.18);position:relative;max-height:90vh;overflow-y:auto}
 .modal h3{font-size:16px;font-weight:700;color:#111827;margin-bottom:16px;padding-right:24px}
 .modal label{font-size:12px;font-weight:600;color:#6b7280;display:block;margin-bottom:4px;margin-top:12px}
-.modal input,.modal textarea{width:100%;font-size:13px;border:1px solid #e5e7eb;border-radius:8px;padding:8px 10px;outline:none;font-family:inherit}
+.modal input,.modal textarea,.modal select{width:100%;font-size:13px;border:1px solid #e5e7eb;border-radius:8px;padding:8px 10px;outline:none;font-family:inherit;background:#fff}
 .modal textarea{resize:vertical;min-height:60px}
 .modal-actions{display:flex;gap:8px;margin-top:18px;justify-content:flex-end}
 .btn-save{padding:8px 20px;border-radius:8px;border:none;background:#1a56db;color:#fff;font-weight:700;font-size:13px;cursor:pointer}
 .btn-cancel{padding:8px 16px;border-radius:8px;border:1px solid #e5e7eb;background:#fff;font-size:13px;cursor:pointer}
 .btn-delete{padding:8px 16px;border-radius:8px;border:none;background:#fee2e2;color:#ef4444;font-size:13px;cursor:pointer;font-weight:600}
 .close-modal{position:absolute;top:14px;right:16px;background:none;border:none;font-size:18px;color:#9ca3af;cursor:pointer}
-.color-opts{display:flex;gap:8px;margin-top:4px}
-.color-opt{width:24px;height:24px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:border .1s}
-.color-opt.selected{border-color:#1a1f36}
 </style>
 </head>
 <body>
 
 <nav>
   <div class="nav-brand">Marius<span>.</span></div>
-  <div class="nav-item active" onclick="showPage('home')" id="nav-home"><span class="nav-icon">🏠</span>Home</div>
-  <div class="nav-item" onclick="showPage('tasks')" id="nav-tasks"><span class="nav-icon">📋</span>Task Planner</div>
-  <div class="nav-item" onclick="showPage('calendar')" id="nav-calendar"><span class="nav-icon">📅</span>Calendar</div>
+  <div class="nav-item active" onclick="showPage('home')"     id="nav-home">    <span class="nav-icon">🏠</span><span data-i18n="nav_home">Home</span></div>
+  <div class="nav-item"        onclick="showPage('tasks')"    id="nav-tasks">   <span class="nav-icon">📋</span><span data-i18n="nav_tasks">Task Planner</span></div>
+  <div class="nav-item"        onclick="showPage('calendar')" id="nav-calendar"><span class="nav-icon">📅</span><span data-i18n="nav_calendar">Calendar</span></div>
+  <div class="nav-item"        onclick="showPage('setup')"    id="nav-setup">   <span class="nav-icon">⚙️</span><span data-i18n="nav_setup">Setup</span></div>
+  <div class="nav-spacer"></div>
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="lang-en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn"        id="lang-no" onclick="setLang('no')">NO</button>
+  </div>
 </nav>
 
 <!-- HOME -->
 <div class="page active" id="page-home">
   <div class="home-hero">
-    <div class="hero-greeting">Welcome back</div>
-    <div class="hero-title">Hello, Marius 👋</div>
-    <div class="hero-sub">Your personal dashboard — stay organised, focused, and on top of what matters most.</div>
+    <div class="hero-greeting" data-i18n="hero_greeting">Welcome back</div>
+    <div class="hero-title" data-i18n="hero_title">Hello, Marius 👋</div>
+    <div class="hero-sub" data-i18n="hero_sub">Your personal dashboard — stay organised, focused, and on top of what matters most.</div>
     <div class="hero-date" id="heroDate"></div>
   </div>
   <div class="quick-cards">
     <div class="qcard" style="border-color:#3b82f6" onclick="showPage('tasks')">
       <div class="qcard-icon">📋</div>
-      <div class="qcard-title">Task Planner</div>
-      <div class="qcard-desc">Organise your tasks using the Eisenhower Matrix. Focus on what truly matters.</div>
-      <div class="qcard-action" style="color:#3b82f6">Open Planner →</div>
+      <div class="qcard-title" data-i18n="nav_tasks">Task Planner</div>
+      <div class="qcard-desc" data-i18n="card_tasks_desc">Organise tasks using the Eisenhower Matrix.</div>
+      <div class="qcard-action" style="color:#3b82f6" data-i18n="card_tasks_action">Open Planner →</div>
     </div>
     <div class="qcard" style="border-color:#8b5cf6" onclick="showPage('calendar')">
       <div class="qcard-icon">📅</div>
-      <div class="qcard-title">Calendar</div>
-      <div class="qcard-desc">Schedule your week and keep track of upcoming events and deadlines.</div>
-      <div class="qcard-action" style="color:#8b5cf6">Open Calendar →</div>
+      <div class="qcard-title" data-i18n="nav_calendar">Calendar</div>
+      <div class="qcard-desc" data-i18n="card_cal_desc">Schedule your week and track deadlines.</div>
+      <div class="qcard-action" style="color:#8b5cf6" data-i18n="card_cal_action">Open Calendar →</div>
+    </div>
+    <div class="qcard" style="border-color:#f59e0b" onclick="showPage('setup')">
+      <div class="qcard-icon">⚙️</div>
+      <div class="qcard-title" data-i18n="nav_setup">Setup</div>
+      <div class="qcard-desc" data-i18n="card_setup_desc">Configure categories and dashboard settings.</div>
+      <div class="qcard-action" style="color:#f59e0b" data-i18n="card_setup_action">Open Setup →</div>
     </div>
   </div>
-  <div class="home-section-title">Task Overview</div>
+  <div class="home-section-title" data-i18n="task_overview">Task Overview</div>
   <div class="summary-row" id="summaryRow"></div>
 </div>
 
@@ -228,51 +247,53 @@ tr.done-row td.name-cell .task-name{text-decoration:line-through;color:#9ca3af}
 <div class="page" id="page-tasks">
   <div class="page-header">
     <div class="page-header-text">
-      <h2>📋 Eisenhower Task Planner</h2>
-      <p>Check Urgent &amp; Important — the matrix updates automatically. Click a task name to add due date &amp; notes.</p>
+      <h2>📋 <span data-i18n="nav_tasks">Task Planner</span></h2>
+      <p data-i18n="tasks_sub">Check Urgent &amp; Important — the matrix updates automatically.</p>
     </div>
-    <button class="fullscreen-btn" onclick="openFullscreen()">⛶ Full Screen</button>
+    <button class="fullscreen-btn" onclick="openFullscreen()">⛶ <span data-i18n="fullscreen">Full Screen</span></button>
   </div>
-  <div class="card" id="taskCard">
+  <div class="card">
     <div class="add-row">
-      <input id="newName" placeholder="New task name…" onkeydown="if(event.key==='Enter')addTask('newName')"/>
-      <button class="add-btn" onclick="addTask('newName')">+ Add Task</button>
+      <input id="newName" data-i18n-placeholder="task_placeholder" placeholder="New task name…" onkeydown="if(event.key==='Enter')addTask('newName','newCat')"/>
+      <select id="newCat"></select>
+      <button class="add-btn" onclick="addTask('newName','newCat')" data-i18n="add_task">+ Add Task</button>
       <span id="addErr" style="font-size:12px;color:#ef4444"></span>
     </div>
-    <div class="filter-bar">
-      <span class="filter-bar-label">Filter:</span>
-      <button class="fbtn active" onclick="setFilter('all',this)">All</button>
+    <div class="filter-bar" id="filterBar">
+      <span class="filter-bar-label" data-i18n="filter">Filter:</span>
+      <button class="fbtn active"      onclick="setFilter('all',this)"       data-i18n="all">All</button>
       <div class="filter-sep"></div>
-      <button class="fbtn f-urgent" onclick="setFilter('urgent',this)">🔴 Urgent</button>
-      <button class="fbtn f-important" onclick="setFilter('important',this)">🔵 Important</button>
+      <button class="fbtn f-urgent"    onclick="setFilter('urgent',this)"    data-i18n="urgent_btn">🔴 Urgent</button>
+      <button class="fbtn f-important" onclick="setFilter('important',this)" data-i18n="important_btn">🔵 Important</button>
       <div class="filter-sep"></div>
-      <button class="fbtn" onclick="setFilter('do',this)">🔥 Do First</button>
-      <button class="fbtn" onclick="setFilter('delegate',this)">🤝 Delegate</button>
-      <button class="fbtn" onclick="setFilter('schedule',this)">📅 Schedule</button>
-      <button class="fbtn" onclick="setFilter('eliminate',this)">🗑️ Eliminate</button>
+      <button class="fbtn" onclick="setFilter('do',this)"       data-i18n="do_first_btn">🔥 Do First</button>
+      <button class="fbtn" onclick="setFilter('delegate',this)" data-i18n="delegate_btn">🤝 Delegate</button>
+      <button class="fbtn" onclick="setFilter('schedule',this)" data-i18n="schedule_btn">📅 Schedule</button>
+      <button class="fbtn" onclick="setFilter('eliminate',this)" data-i18n="eliminate_btn">🗑️ Eliminate</button>
       <div class="filter-sep"></div>
-      <button class="fbtn f-done" onclick="setFilter('done',this)">✅ Done</button>
+      <button class="fbtn f-done" onclick="setFilter('done',this)" data-i18n="done_btn">✅ Done</button>
+      <div class="filter-sep"></div>
+      <span class="filter-bar-label" data-i18n="category">Category:</span>
+      <select class="filter-cat-select" id="filterCat" onchange="setCatFilter(this.value)">
+        <option value="all" data-i18n="all_cats">All Categories</option>
+      </select>
     </div>
     <table>
       <thead>
         <tr>
-          <th class="left sortable" onclick="setSort('name')">Task <span id="sort-name" style="font-size:10px"></span></th>
-          <th class="center">Urgent</th>
-          <th class="center">Important</th>
-          <th class="center">Matrix</th>
-          <th class="center">Done</th>
+          <th class="left sortable" onclick="setSort('name')"><span data-i18n="th_task">Task</span> <span id="sort-name" style="font-size:10px"></span></th>
+          <th class="center sortable" onclick="setSort('cat')"><span data-i18n="th_category">Category</span> <span id="sort-cat" style="font-size:10px"></span></th>
+          <th class="center" data-i18n="th_urgent">Urgent</th>
+          <th class="center" data-i18n="th_important">Important</th>
+          <th class="center" data-i18n="th_matrix">Matrix</th>
+          <th class="center" data-i18n="th_done">Done</th>
           <th></th>
         </tr>
       </thead>
       <tbody id="taskBody"></tbody>
     </table>
     <div class="pagination-bar" id="pagBar"></div>
-    <div class="legend">
-      <span style="color:#ef4444">✓ Urgent + ✓ Important → 🔥 Do First</span>
-      <span style="color:#3b82f6">✗ Urgent + ✓ Important → 📅 Schedule</span>
-      <span style="color:#f59e0b">✓ Urgent + ✗ Important → 🤝 Delegate</span>
-      <span style="color:#9ca3af">✗ Urgent + ✗ Important → 🗑️ Eliminate</span>
-    </div>
+    <div class="legend" id="legendBar"></div>
   </div>
   <div class="matrix" id="matrix"></div>
 </div>
@@ -281,8 +302,8 @@ tr.done-row td.name-cell .task-name{text-decoration:line-through;color:#9ca3af}
 <div class="page" id="page-calendar">
   <div class="page-header">
     <div class="page-header-text">
-      <h2>📅 Calendar</h2>
-      <p>Click any slot to add an event. Toggle between views using the buttons.</p>
+      <h2>📅 <span data-i18n="nav_calendar">Calendar</span></h2>
+      <p data-i18n="cal_sub">Shows all tasks by due date.</p>
     </div>
   </div>
   <div class="cal-toolbar">
@@ -291,64 +312,91 @@ tr.done-row td.name-cell .task-name{text-decoration:line-through;color:#9ca3af}
       <div class="cal-title" id="calTitle"></div>
       <button onclick="calNav(1)">&#8250;</button>
     </div>
-    <button class="today-btn" onclick="goToday()">Today</button>
+    <button class="today-btn" onclick="goToday()" data-i18n="today_btn">Today</button>
     <div class="view-toggle">
-      <button class="vbtn active" onclick="setView('day')"      id="vbtn-day">Day</button>
-      <button class="vbtn"        onclick="setView('workweek')" id="vbtn-workweek">Work Week</button>
-      <button class="vbtn"        onclick="setView('week')"     id="vbtn-week">Week</button>
-      <button class="vbtn"        onclick="setView('month')"    id="vbtn-month">Month</button>
+      <button class="vbtn active" onclick="setView('day')"      id="vbtn-day"      data-i18n="view_day">Today</button>
+      <button class="vbtn"        onclick="setView('workweek')" id="vbtn-workweek" data-i18n="view_workweek">Work Week</button>
+      <button class="vbtn"        onclick="setView('week')"     id="vbtn-week"     data-i18n="view_week">Week</button>
+      <button class="vbtn"        onclick="setView('month')"    id="vbtn-month"    data-i18n="view_month">Month</button>
     </div>
   </div>
   <div id="calView"></div>
 </div>
 
-<!-- FULLSCREEN TASK VIEW -->
+<!-- SETUP -->
+<div class="page" id="page-setup">
+  <div class="page-header">
+    <div class="page-header-text">
+      <h2>⚙️ <span data-i18n="nav_setup">Setup</span></h2>
+      <p data-i18n="setup_sub">Configure your categories and dashboard preferences.</p>
+    </div>
+  </div>
+  <div class="setup-grid">
+    <div class="setup-section">
+      <div class="setup-section-header">
+        <h3 data-i18n="cat_title">🏷️ Task Categories</h3>
+        <p data-i18n="cat_sub">Add or remove categories used in the Task Planner.</p>
+      </div>
+      <div class="setup-list" id="catList"></div>
+      <div class="setup-info" id="catInfo"></div>
+      <div class="setup-add-row">
+        <input id="newCatName" data-i18n-placeholder="cat_placeholder" placeholder="Category name…" onkeydown="if(event.key==='Enter')addCategory()"/>
+        <div class="color-picker-row" id="catColorPicker"></div>
+        <button class="add-btn" onclick="addCategory()" data-i18n="add_btn">+ Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FULLSCREEN -->
 <div class="fs-overlay" id="fsOverlay">
   <div class="fs-nav">
-    <span class="fs-title">📋 Task Planner — Full Screen</span>
-    <button class="fs-close" onclick="closeFullscreen()">✕ Close</button>
+    <span class="fs-title">📋 <span data-i18n="nav_tasks">Task Planner</span> — <span data-i18n="fullscreen">Full Screen</span></span>
+    <button class="fs-close" onclick="closeFullscreen()">✕ <span data-i18n="close">Close</span></button>
   </div>
   <div class="fs-body">
     <div class="fs-add-row">
-      <input id="fsNewName" placeholder="New task name…" onkeydown="if(event.key==='Enter')addTask('fsNewName')"/>
-      <button class="add-btn" onclick="addTask('fsNewName')">+ Add Task</button>
+      <input id="fsNewName" data-i18n-placeholder="task_placeholder" placeholder="New task name…" onkeydown="if(event.key==='Enter')addTask('fsNewName','fsNewCat')"/>
+      <select id="fsNewCat"></select>
+      <button class="add-btn" onclick="addTask('fsNewName','fsNewCat')" data-i18n="add_task">+ Add Task</button>
       <span id="fsAddErr" style="font-size:12px;color:#ef4444"></span>
     </div>
     <div class="fs-card">
       <div class="filter-bar">
-        <span class="filter-bar-label">Filter:</span>
-        <button class="fbtn active" id="fs-fall" onclick="setFilter('all',this)">All</button>
+        <span class="filter-bar-label" data-i18n="filter">Filter:</span>
+        <button class="fbtn active"      onclick="setFilter('all',this)"       data-i18n="all">All</button>
         <div class="filter-sep"></div>
-        <button class="fbtn f-urgent" onclick="setFilter('urgent',this)">🔴 Urgent</button>
-        <button class="fbtn f-important" onclick="setFilter('important',this)">🔵 Important</button>
+        <button class="fbtn f-urgent"    onclick="setFilter('urgent',this)"    data-i18n="urgent_btn">🔴 Urgent</button>
+        <button class="fbtn f-important" onclick="setFilter('important',this)" data-i18n="important_btn">🔵 Important</button>
         <div class="filter-sep"></div>
-        <button class="fbtn" onclick="setFilter('do',this)">🔥 Do First</button>
-        <button class="fbtn" onclick="setFilter('delegate',this)">🤝 Delegate</button>
-        <button class="fbtn" onclick="setFilter('schedule',this)">📅 Schedule</button>
-        <button class="fbtn" onclick="setFilter('eliminate',this)">🗑️ Eliminate</button>
+        <button class="fbtn" onclick="setFilter('do',this)"        data-i18n="do_first_btn">🔥 Do First</button>
+        <button class="fbtn" onclick="setFilter('delegate',this)"  data-i18n="delegate_btn">🤝 Delegate</button>
+        <button class="fbtn" onclick="setFilter('schedule',this)"  data-i18n="schedule_btn">📅 Schedule</button>
+        <button class="fbtn" onclick="setFilter('eliminate',this)" data-i18n="eliminate_btn">🗑️ Eliminate</button>
         <div class="filter-sep"></div>
-        <button class="fbtn f-done" onclick="setFilter('done',this)">✅ Done</button>
+        <button class="fbtn f-done" onclick="setFilter('done',this)" data-i18n="done_btn">✅ Done</button>
+        <div class="filter-sep"></div>
+        <span class="filter-bar-label" data-i18n="category">Category:</span>
+        <select class="filter-cat-select" id="fsFiltCat" onchange="setCatFilter(this.value)">
+          <option value="all" data-i18n="all_cats">All Categories</option>
+        </select>
       </div>
       <table>
         <thead>
           <tr>
-            <th class="left sortable" onclick="setSort('name')">Task <span id="fs-sort-name" style="font-size:10px"></span></th>
-            <th class="center">Urgent</th>
-            <th class="center">Important</th>
-            <th class="center">Matrix</th>
-            <th class="center">Done</th>
+            <th class="left sortable" onclick="setSort('name')"><span data-i18n="th_task">Task</span> <span id="fs-sort-name" style="font-size:10px"></span></th>
+            <th class="center sortable" onclick="setSort('cat')"><span data-i18n="th_category">Category</span> <span id="fs-sort-cat" style="font-size:10px"></span></th>
+            <th class="center" data-i18n="th_urgent">Urgent</th>
+            <th class="center" data-i18n="th_important">Important</th>
+            <th class="center" data-i18n="th_matrix">Matrix</th>
+            <th class="center" data-i18n="th_done">Done</th>
             <th></th>
           </tr>
         </thead>
         <tbody id="fsTaskBody"></tbody>
       </table>
       <div class="pagination-bar" id="fsPagBar"></div>
-      <div class="legend">
-        <span style="color:#ef4444">✓ Urgent + ✓ Important → 🔥 Do First</span>
-        <span style="color:#3b82f6">✗ Urgent + ✓ Important → 📅 Schedule</span>
-        <span style="color:#f59e0b">✓ Urgent + ✗ Important → 🤝 Delegate</span>
-        <span style="color:#9ca3af">✗ Urgent + ✗ Important → 🗑️ Eliminate</span>
-      </div>
+      <div class="legend" id="fsLegendBar"></div>
     </div>
   </div>
 </div>
@@ -358,200 +406,360 @@ tr.done-row td.name-cell .task-name{text-decoration:line-through;color:#9ca3af}
   <div class="modal">
     <button class="close-modal" onclick="closeTaskModal()">✕</button>
     <h3 id="taskModalTitle">Task Details</h3>
-    <label>Due Date</label><input type="date" id="modalDue"/>
-    <label>Notes</label><textarea id="modalNotes" placeholder="Add any notes…"></textarea>
+    <label data-i18n="category">Category</label><select id="modalCat"></select>
+    <label data-i18n="due_date">Due Date</label><input type="date" id="modalDue"/>
+    <label data-i18n="notes">Notes</label><textarea id="modalNotes" data-i18n-placeholder="notes_placeholder" placeholder="Add any notes…"></textarea>
     <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeTaskModal()">Cancel</button>
-      <button class="btn-save" onclick="saveTaskModal()">Save</button>
-    </div>
-  </div>
-</div>
-
-<!-- EVENT MODAL -->
-<div class="overlay" id="evOverlay">
-  <div class="modal">
-    <button class="close-modal" onclick="closeEvModal()">✕</button>
-    <h3 id="evModalTitle">Add Event</h3>
-    <label>Title</label><input id="evTitle" placeholder="Event title…"/>
-    <label>Date</label><input type="date" id="evDate"/>
-    <label>Start Time</label><input type="time" id="evStart" value="09:00"/>
-    <label>End Time</label><input type="time" id="evEnd" value="10:00"/>
-    <label>Notes</label><textarea id="evNotes" placeholder="Optional notes…"></textarea>
-    <label>Colour</label>
-    <div class="color-opts" id="colorOpts"></div>
-    <div class="modal-actions" id="evModalActions">
-      <button class="btn-cancel" onclick="closeEvModal()">Cancel</button>
-      <button class="btn-save" onclick="saveEvent()">Save</button>
+      <button class="btn-cancel" onclick="closeTaskModal()" data-i18n="cancel">Cancel</button>
+      <button class="btn-save"   onclick="saveTaskModal()"  data-i18n="save">Save</button>
     </div>
   </div>
 </div>
 
 <script>
+// ═══════════════════════════════════════════
+// TRANSLATIONS
+// ═══════════════════════════════════════════
+const T={
+  en:{
+    nav_home:'Home', nav_tasks:'Task Planner', nav_calendar:'Calendar', nav_setup:'Setup',
+    hero_greeting:'Welcome back', hero_title:'Hello, Marius 👋',
+    hero_sub:'Your personal dashboard — stay organised, focused, and on top of what matters most.',
+    card_tasks_desc:'Organise tasks using the Eisenhower Matrix.',
+    card_tasks_action:'Open Planner →',
+    card_cal_desc:'Schedule your week and track deadlines.',
+    card_cal_action:'Open Calendar →',
+    card_setup_desc:'Configure categories and dashboard settings.',
+    card_setup_action:'Open Setup →',
+    task_overview:'Task Overview',
+    tasks_sub:'Check Urgent & Important — the matrix updates automatically.',
+    fullscreen:'Full Screen', close:'Close',
+    filter:'Filter:', all:'All',
+    urgent_btn:'🔴 Urgent', important_btn:'🔵 Important',
+    do_first_btn:'🔥 Do First', delegate_btn:'🤝 Delegate',
+    schedule_btn:'📅 Schedule', eliminate_btn:'🗑️ Eliminate', done_btn:'✅ Done',
+    category:'Category', all_cats:'All Categories',
+    th_task:'Task', th_category:'Category', th_urgent:'Urgent', th_important:'Important',
+    th_matrix:'Matrix', th_done:'Done',
+    task_placeholder:'New task name…',
+    add_task:'+ Add Task', add_btn:'+ Add',
+    no_cat:'— No Category —',
+    err_task_name:'Please enter a task name.',
+    err_cat_exists:'Category already exists.',
+    confirm_delete_cat:'This category is used by {n} task(s). Delete anyway? Tasks will become uncategorised.',
+    due_date:'Due Date', notes:'Notes', notes_placeholder:'Add any notes…',
+    cancel:'Cancel', save:'Save',
+    cat_title:'🏷️ Task Categories', cat_sub:'Add or remove categories.',
+    cat_placeholder:'Category name…',
+    cat_info:'{n} category|{n} categories configured. {u} in use.',
+    cat_none_used:'None currently assigned to tasks.',
+    setup_sub:'Configure your categories and dashboard preferences.',
+    cal_sub:'Shows all tasks by due date.',
+    today_btn:'Today', view_day:'Today', view_workweek:'Work Week',
+    view_week:'Week', view_month:'Month',
+    overdue:'⚠️ Overdue ({n})', due_today:'📌 Due Today ({n})',
+    completed_today:'✅ Completed Today ({n})',
+    no_tasks_today:'🎉 No tasks due today!',
+    due_label:'Due',
+    legend_do:'✓ Urgent + ✓ Important → 🔥 Do First',
+    legend_schedule:'✗ Urgent + ✓ Important → 📅 Schedule',
+    legend_delegate:'✓ Urgent + ✗ Important → 🤝 Delegate',
+    legend_eliminate:'✗ Urgent + ✗ Important → 🗑️ Eliminate',
+    sum_total:'Total Tasks', sum_do:'Do First 🔥', sum_active:'Active', sum_done:'Done ✅',
+    showing:'Showing', of:'of', tasks_label:'task|tasks', per_page:'per page',
+    q_do_label:'Do First', q_do_tag:'Urgent & Important',
+    q_schedule_label:'Schedule', q_schedule_tag:'Important, Not Urgent',
+    q_delegate_label:'Delegate', q_delegate_tag:'Urgent, Not Important',
+    q_eliminate_label:'Eliminate', q_eliminate_tag:'Not Urgent & Not Important',
+    q_done_label:'Done', q_done_tag:'Completed',
+    empty:'Empty',
+    days:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+    months:['January','February','March','April','May','June','July','August','September','October','November','December'],
+    sdays:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+  },
+  no:{
+    nav_home:'Hjem', nav_tasks:'Oppgaveplanner', nav_calendar:'Kalender', nav_setup:'Innstillinger',
+    hero_greeting:'Velkommen tilbake', hero_title:'Hei, Marius 👋',
+    hero_sub:'Ditt personlige dashbord — hold deg organisert, fokusert og på toppen av det som betyr mest.',
+    card_tasks_desc:'Organiser oppgaver med Eisenhower-matrisen.',
+    card_tasks_action:'Åpne planner →',
+    card_cal_desc:'Planlegg uken og hold oversikt over frister.',
+    card_cal_action:'Åpne kalender →',
+    card_setup_desc:'Konfigurer kategorier og dashbordinnstillinger.',
+    card_setup_action:'Åpne innstillinger →',
+    task_overview:'Oppgaveoversikt',
+    tasks_sub:'Kryss av Haster og Viktig — matrisen oppdateres automatisk.',
+    fullscreen:'Fullskjerm', close:'Lukk',
+    filter:'Filter:', all:'Alle',
+    urgent_btn:'🔴 Haster', important_btn:'🔵 Viktig',
+    do_first_btn:'🔥 Gjør først', delegate_btn:'🤝 Deleger',
+    schedule_btn:'📅 Planlegg', eliminate_btn:'🗑️ Eliminer', done_btn:'✅ Ferdig',
+    category:'Kategori', all_cats:'Alle kategorier',
+    th_task:'Oppgave', th_category:'Kategori', th_urgent:'Haster', th_important:'Viktig',
+    th_matrix:'Matrise', th_done:'Ferdig',
+    task_placeholder:'Ny oppgave…',
+    add_task:'+ Legg til', add_btn:'+ Legg til',
+    no_cat:'— Ingen kategori —',
+    err_task_name:'Vennligst skriv inn et oppgavenavn.',
+    err_cat_exists:'Kategorien finnes allerede.',
+    confirm_delete_cat:'Denne kategorien brukes av {n} oppgave(r). Slette likevel? Oppgavene blir uten kategori.',
+    due_date:'Forfallsdato', notes:'Notater', notes_placeholder:'Legg til notater…',
+    cancel:'Avbryt', save:'Lagre',
+    cat_title:'🏷️ Oppgavekategorier', cat_sub:'Legg til eller fjern kategorier.',
+    cat_placeholder:'Kategorinavn…',
+    cat_info:'{n} kategori|{n} kategorier konfigurert. {u} i bruk.',
+    cat_none_used:'Ingen er tilordnet oppgaver ennå.',
+    setup_sub:'Konfigurer dine kategorier og dashbordinnstillinger.',
+    cal_sub:'Viser alle oppgaver etter forfallsdato.',
+    today_btn:'I dag', view_day:'I dag', view_workweek:'Arbeidsuke',
+    view_week:'Uke', view_month:'Måned',
+    overdue:'⚠️ Forfalt ({n})', due_today:'📌 Forfaller i dag ({n})',
+    completed_today:'✅ Fullført i dag ({n})',
+    no_tasks_today:'🎉 Ingen oppgaver forfaller i dag!',
+    due_label:'Forfalt',
+    legend_do:'✓ Haster + ✓ Viktig → 🔥 Gjør først',
+    legend_schedule:'✗ Haster + ✓ Viktig → 📅 Planlegg',
+    legend_delegate:'✓ Haster + ✗ Viktig → 🤝 Deleger',
+    legend_eliminate:'✗ Haster + ✗ Viktig → 🗑️ Eliminer',
+    sum_total:'Totalt', sum_do:'Gjør først 🔥', sum_active:'Aktive', sum_done:'Ferdig ✅',
+    showing:'Viser', of:'av', tasks_label:'oppgave|oppgaver', per_page:'per side',
+    q_do_label:'Gjør først', q_do_tag:'Haster & Viktig',
+    q_schedule_label:'Planlegg', q_schedule_tag:'Viktig, ikke haster',
+    q_delegate_label:'Deleger', q_delegate_tag:'Haster, ikke viktig',
+    q_eliminate_label:'Eliminer', q_eliminate_tag:'Ikke haster & ikke viktig',
+    q_done_label:'Ferdig', q_done_tag:'Fullført',
+    empty:'Tom',
+    days:['Søndag','Mandag','Tirsdag','Onsdag','Torsdag','Fredag','Lørdag'],
+    months:['Januar','Februar','Mars','April','Mai','Juni','Juli','August','September','Oktober','November','Desember'],
+    sdays:['Søn','Man','Tir','Ons','Tor','Fre','Lør'],
+  }
+};
+
+let lang=localStorage.getItem('marius_lang')||'en';
+
+function t(key,vars={}){
+  let s=(T[lang][key]||T['en'][key]||key);
+  Object.keys(vars).forEach(k=>s=s.replace('{'+k+'}',vars[k]));
+  return s;
+}
+function tPlural(key,n){
+  const parts=t(key).split('|');
+  return(n===1?parts[0]:parts[1]||parts[0]).replace('{n}',n);
+}
+
+function applyTranslations(){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    el.textContent=t(k);
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+    el.placeholder=t(el.getAttribute('data-i18n-placeholder'));
+  });
+  document.getElementById('lang-en').classList.toggle('active',lang==='en');
+  document.getElementById('lang-no').classList.toggle('active',lang==='no');
+  document.documentElement.lang=lang;
+}
+
+function setLang(l){
+  lang=l;
+  localStorage.setItem('marius_lang',l);
+  applyTranslations();
+  renderTasks();
+  renderSummary();
+  renderCal();
+  renderSetup();
+  updateHeroDate();
+}
+
 // ── NAV ──
 function showPage(p){
   document.querySelectorAll('.page').forEach(e=>e.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(e=>e.classList.remove('active'));
   document.getElementById('page-'+p).classList.add('active');
   document.getElementById('nav-'+p).classList.add('active');
-  if(p==='home')renderSummary();
+  if(p==='home'){renderSummary();updateHeroDate();}
   if(p==='calendar')renderCal();
+  if(p==='setup')renderSetup();
 }
 
 // ── DATE ──
-const DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
-const SDAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-const now=new Date();
-document.getElementById('heroDate').textContent=DAYS[now.getDay()]+', '+MONTHS[now.getMonth()]+' '+now.getDate()+' '+now.getFullYear();
+function updateHeroDate(){
+  const now=new Date();
+  document.getElementById('heroDate').textContent=t('days')[now.getDay()]+', '+t('months')[now.getMonth()]+' '+now.getDate()+' '+now.getFullYear();
+}
 
-// ── TASKS STATE ──
-const Qs={
-  do:       {label:"Do First", tag:"Urgent & Important",       color:"#ef4444",bg:"#fef2f2",border:"#fecaca",emoji:"🔥"},
-  schedule: {label:"Schedule", tag:"Important, Not Urgent",     color:"#3b82f6",bg:"#eff6ff",border:"#bfdbfe",emoji:"📅"},
-  delegate: {label:"Delegate", tag:"Urgent, Not Important",     color:"#f59e0b",bg:"#fffbeb",border:"#fde68a",emoji:"🤝"},
-  eliminate:{label:"Eliminate",tag:"Not Urgent & Not Important",color:"#9ca3af",bg:"#f9fafb",border:"#e5e7eb",emoji:"🗑️"},
-  done:     {label:"Done",     tag:"Completed",                 color:"#22c55e",bg:"#f0fdf4",border:"#bbf7d0",emoji:"✅"},
-};
+// ── CATEGORIES ──
+const CAT_COLORS=['#6366f1','#f59e0b','#10b981','#ef4444','#8b5cf6','#ec4899','#14b8a6','#f97316','#3b82f6','#84cc16'];
+const DEFAULT_CATS=[
+  {id:'c1',name:'Work',      color:'#3b82f6'},
+  {id:'c2',name:'Personal',  color:'#10b981'},
+  {id:'c3',name:'Health',    color:'#ef4444'},
+  {id:'c4',name:'Learning',  color:'#8b5cf6'},
+  {id:'c5',name:'Finance',   color:'#f59e0b'},
+];
+let categories=JSON.parse(localStorage.getItem('marius_cats')||'null')||DEFAULT_CATS;
+let catColorPick=CAT_COLORS[0];
+function saveCats(){localStorage.setItem('marius_cats',JSON.stringify(categories));}
+function getCat(id){return categories.find(c=>c.id===id)||null;}
+function catOptions(selId=''){
+  return`<option value="">${t('no_cat')}</option>`+categories.map(c=>`<option value="${c.id}" ${c.id===selId?'selected':''}>${c.name}</option>`).join('');
+}
+function refreshCatDropdowns(){
+  ['newCat','fsNewCat'].forEach(id=>{const el=document.getElementById(id);if(!el)return;const cur=el.value;el.innerHTML=catOptions(cur);});
+  const mc=document.getElementById('modalCat');if(mc){const cur=mc.value;mc.innerHTML=catOptions(cur);}
+  const fOpts=`<option value="all">${t('all_cats')}</option>`+categories.map(c=>`<option value="${c.id}">${c.name}</option>`).join('');
+  ['filterCat','fsFiltCat'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=fOpts;});
+}
+
+function renderSetup(){
+  refreshCatDropdowns();
+  document.getElementById('catColorPicker').innerHTML=CAT_COLORS.map(c=>
+    `<div class="cp-dot ${c===catColorPick?'sel':''}" style="background:${c}" onclick="pickCatColor('${c}')"></div>`).join('');
+  const list=document.getElementById('catList');
+  if(!categories.length){
+    list.innerHTML=`<div class="setup-empty">${t('cat_sub')}</div>`;
+  } else {
+    list.innerHTML=categories.map(c=>`
+      <div class="setup-item">
+        <div class="setup-item-color" style="background:${c.color}"></div>
+        <div class="setup-item-name">${c.name}</div>
+        <button class="setup-item-del" onclick="deleteCategory('${c.id}')">✕</button>
+      </div>`).join('');
+  }
+  const used=categories.filter(c=>tasks.some(t2=>t2.cat===c.id)).length;
+  const plural=tPlural('cat_info',categories.length).replace('{u}',used);
+  document.getElementById('catInfo').innerHTML=plural+(used===0?' '+t('cat_none_used'):'');
+  document.getElementById('newCatName').placeholder=t('cat_placeholder');
+  // re-apply i18n for dynamic labels
+  applyTranslations();
+}
+function pickCatColor(c){catColorPick=c;renderSetup();}
+function addCategory(){
+  const inp=document.getElementById('newCatName');const name=inp.value.trim();
+  if(!name)return;
+  if(categories.find(c=>c.name.toLowerCase()===name.toLowerCase())){alert(t('err_cat_exists'));return;}
+  categories.push({id:'c'+Date.now(),name,color:catColorPick});
+  saveCats();inp.value='';renderSetup();refreshCatDropdowns();renderTasks();
+}
+function deleteCategory(id){
+  const inUse=tasks.filter(t2=>t2.cat===id).length;
+  if(inUse&&!confirm(t('confirm_delete_cat',{n:inUse})))return;
+  tasks.forEach(t2=>{if(t2.cat===id)t2.cat='';});
+  saveTasks();categories=categories.filter(c=>c.id!==id);
+  saveCats();renderSetup();refreshCatDropdowns();renderTasks();
+}
+
+// ── TASKS ──
+function Qs(){return{
+  do:       {label:t('q_do_label'),       tag:t('q_do_tag'),       color:"#ef4444",bg:"#fef2f2",border:"#fecaca",emoji:"🔥"},
+  schedule: {label:t('q_schedule_label'), tag:t('q_schedule_tag'), color:"#3b82f6",bg:"#eff6ff",border:"#bfdbfe",emoji:"📅"},
+  delegate: {label:t('q_delegate_label'), tag:t('q_delegate_tag'), color:"#f59e0b",bg:"#fffbeb",border:"#fde68a",emoji:"🤝"},
+  eliminate:{label:t('q_eliminate_label'),tag:t('q_eliminate_tag'),color:"#9ca3af",bg:"#f9fafb",border:"#e5e7eb",emoji:"🗑️"},
+  done:     {label:t('q_done_label'),     tag:t('q_done_tag'),     color:"#22c55e",bg:"#f0fdf4",border:"#bbf7d0",emoji:"✅"},
+};}
 const QORDER=["do","delegate","schedule","eliminate","done"];
-
 let tasks=JSON.parse(localStorage.getItem("marius_tasks")||"[]");
 let tuid=parseInt(localStorage.getItem("marius_tuid")||"1");
-let editTaskId=null;
-let activeFilter='all';
-let sortField='id';
-let sortDir='desc';  // newest first
-let currentPage=1;
-let perPage=10;
-let fsOpen=false;
+let editTaskId=null,activeFilter='all',activeCatFilter='all',sortField='id',sortDir='desc',currentPage=1,perPage=10;
+
+function dQ(t2){if(t2.done)return"done";if(t2.urgent&&t2.important)return"do";if(!t2.urgent&&t2.important)return"schedule";if(t2.urgent&&!t2.important)return"delegate";return"eliminate";}
+function saveTasks(){localStorage.setItem("marius_tasks",JSON.stringify(tasks));localStorage.setItem("marius_tuid",tuid);}
 
 if(!tasks.length){
   tasks=[
-    {id:tuid++,name:"Fix critical production bug",urgent:true, important:true, done:false,due:"",notes:""},
-    {id:tuid++,name:"Plan Q2 strategy",           urgent:false,important:true, done:false,due:"",notes:""},
-    {id:tuid++,name:"Reply to non-urgent emails", urgent:true, important:false,done:false,due:"",notes:""},
-    {id:tuid++,name:"Scroll social media",        urgent:false,important:false,done:false,due:"",notes:""},
-  ];
-  saveTasks();
+    {id:tuid++,name:"Fix critical production bug",urgent:true, important:true, done:false,due:"",notes:"",cat:"c1"},
+    {id:tuid++,name:"Plan Q2 strategy",           urgent:false,important:true, done:false,due:"",notes:"",cat:"c1"},
+    {id:tuid++,name:"Book dentist appointment",   urgent:true, important:false,done:false,due:"",notes:"",cat:"c3"},
+    {id:tuid++,name:"Scroll social media",        urgent:false,important:false,done:false,due:"",notes:"",cat:""},
+  ];saveTasks();
 }
 
-function dQ(t){if(t.done)return"done";if(t.urgent&&t.important)return"do";if(!t.urgent&&t.important)return"schedule";if(t.urgent&&!t.important)return"delegate";return"eliminate";}
-function saveTasks(){localStorage.setItem("marius_tasks",JSON.stringify(tasks));localStorage.setItem("marius_tuid",tuid);}
-
-// ── ADD TASK — reads from named input, clears it, then renders ──
-function addTask(inputId){
-  const inp=document.getElementById(inputId);
-  const errId=inputId==='fsNewName'?'fsAddErr':'addErr';
-  const err=document.getElementById(errId);
+function addTask(inpId,catId){
+  const inp=document.getElementById(inpId),catEl=document.getElementById(catId);
+  const errId=inpId==='fsNewName'?'fsAddErr':'addErr';
   const n=inp.value.trim();
-  if(!n){err.textContent="Please enter a task name.";return;}
-  err.textContent="";
-  const newTask={id:tuid++,name:n,urgent:false,important:false,done:false,due:"",notes:""};
-  tasks.unshift(newTask); // add to START of array = newest first
-  saveTasks();
-  inp.value="";
-  currentPage=1; // jump to first page to show new task
-  renderTasks();
+  if(!n){document.getElementById(errId).textContent=t('err_task_name');return;}
+  document.getElementById(errId).textContent="";
+  tasks.unshift({id:tuid++,name:n,urgent:false,important:false,done:false,due:"",notes:"",cat:catEl?catEl.value:""});
+  saveTasks();inp.value="";currentPage=1;renderTasks();
 }
-
-// ── TOGGLE — stopPropagation + rAF to prevent checkbox flicker ──
 function toggleT(id,field,e){
-  if(e){e.stopPropagation();}
-  const t=tasks.find(t=>t.id===id);
-  if(!t)return;
-  if(field!=='done'&&t.done)return;
-  t[field]=!t[field];
-  saveTasks();
-  requestAnimationFrame(()=>renderTasks());
+  if(e)e.stopPropagation();
+  const t2=tasks.find(t2=>t2.id===id);if(!t2)return;
+  if(field!=='done'&&t2.done)return;
+  t2[field]=!t2[field];saveTasks();requestAnimationFrame(()=>renderTasks());
 }
+function deleteTask(id,e){if(e)e.stopPropagation();tasks=tasks.filter(t2=>t2.id!==id);saveTasks();renderTasks();}
 
-function deleteTask(id,e){if(e)e.stopPropagation();tasks=tasks.filter(t=>t.id!==id);saveTasks();renderTasks();}
-
-// ── FILTER ──
 function setFilter(f,btn){
-  activeFilter=f;
-  currentPage=1;
-  // sync both filter bars
+  activeFilter=f;currentPage=1;
   document.querySelectorAll('.filter-bar .fbtn').forEach(b=>b.classList.remove('active'));
-  // activate matching buttons in both bars
-  document.querySelectorAll('.filter-bar .fbtn').forEach(b=>{
-    if(b.textContent.trim()===btn.textContent.trim())b.classList.add('active');
-  });
+  document.querySelectorAll('.filter-bar .fbtn').forEach(b=>{if(b.textContent.trim()===btn.textContent.trim())b.classList.add('active');});
   renderTasks();
 }
-
-// ── SORT ──
-function setSort(field){
-  if(sortField===field){sortDir=sortDir==='asc'?'desc':'asc';}
-  else{sortField=field;sortDir='asc';}
-  currentPage=1;
-  renderTasks();
+function setCatFilter(v){activeCatFilter=v;currentPage=1;renderTasks();}
+function setSort(f){
+  if(sortField===f){sortDir=sortDir==='asc'?'desc':'asc';}else{sortField=f;sortDir='asc';}
+  currentPage=1;renderTasks();
 }
-
 function getFilteredSortedTasks(){
-  let arr=tasks.filter(t=>{
-    if(activeFilter==='all')return true;
-    if(activeFilter==='urgent')return t.urgent&&!t.done;
-    if(activeFilter==='important')return t.important&&!t.done;
-    if(activeFilter==='done')return t.done;
-    return dQ(t)===activeFilter;
+  let arr=tasks.filter(t2=>{
+    const qOk=(()=>{
+      if(activeFilter==='all')return true;
+      if(activeFilter==='urgent')return t2.urgent&&!t2.done;
+      if(activeFilter==='important')return t2.important&&!t2.done;
+      if(activeFilter==='done')return t2.done;
+      return dQ(t2)===activeFilter;
+    })();
+    return qOk&&(activeCatFilter==='all'||t2.cat===activeCatFilter);
   });
   arr=[...arr].sort((a,b)=>{
     let av,bv;
     if(sortField==='name'){av=a.name.toLowerCase();bv=b.name.toLowerCase();}
-    else{
-      // default: by insertion order (index in original array = newest first since we unshift)
-      av=tasks.indexOf(a);bv=tasks.indexOf(b);
-    }
-    if(av<bv)return sortDir==='asc'?-1:1;
-    if(av>bv)return sortDir==='asc'?1:-1;
-    return 0;
+    else if(sortField==='cat'){const ca=getCat(a.cat),cb=getCat(b.cat);av=(ca?ca.name:'').toLowerCase();bv=(cb?cb.name:'').toLowerCase();}
+    else{av=tasks.indexOf(a);bv=tasks.indexOf(b);}
+    if(av<bv)return sortDir==='asc'?-1:1;if(av>bv)return sortDir==='asc'?1:-1;return 0;
   });
   return arr;
 }
-
 function ck(checked,type){
   return`<div class="cb ${checked?'checked-'+type:''}">${checked?`<svg width="12" height="10" viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`:""}</div>`;
 }
-
 function buildTableRows(arr){
-  if(!arr.length)return`<tr><td colspan="6" class="no-tasks">No tasks match the current filter.</td></tr>`;
-  return arr.map(t=>{
-    const q=Qs[dQ(t)];
-    const meta=(t.due||t.notes)?`<div class="task-meta">${t.due?`📆 ${t.due}`:""}${t.due&&t.notes?" · ":""}${t.notes?`💬 ${t.notes.substring(0,40)}${t.notes.length>40?"…":""}`:""}</div>`:"";
-    return`<tr class="${t.done?"done-row":""}">
-      <td class="name-cell" onclick="openTaskModal(${t.id})"><span class="task-name">${t.name}</span>${meta}</td>
-      <td class="center-cell"><div onclick="toggleT(${t.id},'urgent',event)" style="cursor:${t.done?'default':'pointer'}">${ck(t.urgent,"red")}</div></td>
-      <td class="center-cell"><div onclick="toggleT(${t.id},'important',event)" style="cursor:${t.done?'default':'pointer'}">${ck(t.important,"blue")}</div></td>
+  const qs=Qs();
+  if(!arr.length)return`<tr><td colspan="7" class="no-tasks">${t('filter')}</td></tr>`;
+  return arr.map(t2=>{
+    const q=qs[dQ(t2)];const cat=getCat(t2.cat);
+    const catHtml=cat?`<span class="cat-badge" style="background:${cat.color}18;color:${cat.color}">${cat.name}</span>`:`<span style="font-size:11px;color:#d1d5db">—</span>`;
+    const meta=(t2.due||t2.notes)?`<div class="task-meta">${t2.due?`📆 ${t2.due}`:''}${t2.due&&t2.notes?' · ':''}${t2.notes?`💬 ${t2.notes.substring(0,40)}${t2.notes.length>40?'…':''}`:''}</div>`:'';
+    return`<tr class="${t2.done?'done-row':''}">
+      <td class="name-cell" onclick="openTaskModal(${t2.id})"><span class="task-name">${t2.name}</span>${meta}</td>
+      <td class="center-cell">${catHtml}</td>
+      <td class="center-cell"><div onclick="toggleT(${t2.id},'urgent',event)" style="cursor:${t2.done?'default':'pointer'}">${ck(t2.urgent,"red")}</div></td>
+      <td class="center-cell"><div onclick="toggleT(${t2.id},'important',event)" style="cursor:${t2.done?'default':'pointer'}">${ck(t2.important,"blue")}</div></td>
       <td class="center-cell"><span class="badge" style="color:${q.color};background:${q.color}18">${q.emoji} ${q.label}</span></td>
-      <td class="center-cell"><div onclick="toggleT(${t.id},'done',event)" style="cursor:pointer">${ck(t.done,"green")}</div></td>
-      <td class="center-cell"><button class="del-btn" onclick="deleteTask(${t.id},event)">✕</button></td>
+      <td class="center-cell"><div onclick="toggleT(${t2.id},'done',event)" style="cursor:pointer">${ck(t2.done,"green")}</div></td>
+      <td class="center-cell"><button class="del-btn" onclick="deleteTask(${t2.id},event)">✕</button></td>
     </tr>`;
-  }).join("");
+  }).join('');
 }
-
 function buildPagBar(filtered,barId){
-  const total=filtered.length;
-  const totalPages=Math.max(1,Math.ceil(total/perPage));
+  const total=filtered.length,totalPages=Math.max(1,Math.ceil(total/perPage));
   if(currentPage>totalPages)currentPage=totalPages;
-  const start=(currentPage-1)*perPage+1;
-  const end=Math.min(currentPage*perPage,total);
-
-  // page number buttons (show up to 5 around current)
+  const start=(currentPage-1)*perPage+1,end=Math.min(currentPage*perPage,total);
   let pageNums='';
-  const range=2;
   for(let p=1;p<=totalPages;p++){
-    if(p===1||p===totalPages||Math.abs(p-currentPage)<=range){
+    if(p===1||p===totalPages||Math.abs(p-currentPage)<=2)
       pageNums+=`<button class="pag-btn ${p===currentPage?'active':''}" onclick="gotoPage(${p})">${p}</button>`;
-    } else if(Math.abs(p-currentPage)===range+1){
+    else if(Math.abs(p-currentPage)===3)
       pageNums+=`<span style="padding:0 4px;color:#9ca3af;font-size:12px">…</span>`;
-    }
   }
-
+  const taskWord=tPlural('tasks_label',total);
   document.getElementById(barId).innerHTML=`
-    <div class="page-info">Showing <strong>${total?start:0}–${end}</strong> of <strong>${total}</strong> task${total!==1?'s':''}</div>
+    <div class="page-info">${t('showing')} <strong>${total?start:0}–${end}</strong> ${t('of')} <strong>${total}</strong> ${taskWord}</div>
     <div style="display:flex;align-items:center;gap:10px">
       <select class="per-page-select" onchange="setPerPage(this.value)">
-        ${[5,10,20,50].map(n=>`<option value="${n}" ${n===perPage?'selected':''}>${n} per page</option>`).join('')}
+        ${[5,10,20,50].map(n=>`<option value="${n}" ${n===perPage?'selected':''}>${n} ${t('per_page')}</option>`).join('')}
       </select>
       <div class="pag-btns">
         <button class="pag-btn" onclick="gotoPage(${currentPage-1})" ${currentPage===1?'disabled':''}>‹</button>
@@ -560,37 +768,32 @@ function buildPagBar(filtered,barId){
       </div>
     </div>`;
 }
-
-function gotoPage(p){
-  const filtered=getFilteredSortedTasks();
-  const totalPages=Math.max(1,Math.ceil(filtered.length/perPage));
-  if(p<1||p>totalPages)return;
-  currentPage=p;
-  renderTasks();
-}
+function gotoPage(p){const f=getFilteredSortedTasks();const tp=Math.max(1,Math.ceil(f.length/perPage));if(p<1||p>tp)return;currentPage=p;renderTasks();}
 function setPerPage(v){perPage=parseInt(v);currentPage=1;renderTasks();}
-
+function renderLegend(id){
+  document.getElementById(id).innerHTML=`
+    <span style="color:#ef4444">${t('legend_do')}</span>
+    <span style="color:#3b82f6">${t('legend_schedule')}</span>
+    <span style="color:#f59e0b">${t('legend_delegate')}</span>
+    <span style="color:#9ca3af">${t('legend_eliminate')}</span>`;
+}
 function renderTasks(){
-  const sortIcon=sortField==='name'?(sortDir==='asc'?'↑':'↓'):'↕';
-  ['sort-name','fs-sort-name'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=sortIcon;});
-
+  const si=f=>sortField===f?(sortDir==='asc'?'↑':'↓'):'↕';
+  ['sort-name','fs-sort-name'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=si('name');});
+  ['sort-cat','fs-sort-cat'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=si('cat');});
+  refreshCatDropdowns();
   const filtered=getFilteredSortedTasks();
-  const totalPages=Math.max(1,Math.ceil(filtered.length/perPage));
-  if(currentPage>totalPages)currentPage=totalPages;
-  const pageSlice=filtered.slice((currentPage-1)*perPage, currentPage*perPage);
-
-  // Normal view
-  document.getElementById("taskBody").innerHTML=buildTableRows(pageSlice);
+  const tp=Math.max(1,Math.ceil(filtered.length/perPage));
+  if(currentPage>tp)currentPage=tp;
+  const slice=filtered.slice((currentPage-1)*perPage,currentPage*perPage);
+  document.getElementById("taskBody").innerHTML=buildTableRows(slice);
   buildPagBar(filtered,'pagBar');
-
-  // Fullscreen view
-  document.getElementById("fsTaskBody").innerHTML=buildTableRows(pageSlice);
+  document.getElementById("fsTaskBody").innerHTML=buildTableRows(slice);
   buildPagBar(filtered,'fsPagBar');
-
-  // Matrix (always all tasks)
+  renderLegend('legendBar');renderLegend('fsLegendBar');
+  const qs=Qs();
   document.getElementById("matrix").innerHTML=QORDER.map(key=>{
-    const q=Qs[key];
-    const qt=key==="done"?tasks.filter(t=>t.done):tasks.filter(t=>!t.done&&dQ(t)===key);
+    const q=qs[key];const qt=key==="done"?tasks.filter(t2=>t2.done):tasks.filter(t2=>!t2.done&&dQ(t2)===key);
     return`<div class="qbox" style="background:${q.bg};border-color:${q.border}">
       <div class="qbox-header">
         <div class="qbox-emoji">${q.emoji}</div>
@@ -598,192 +801,157 @@ function renderTasks(){
         <div class="qbox-tag">${q.tag}</div>
         <span class="qbox-count" style="color:${q.color};background:${q.color}22">${qt.length}</span>
       </div>
-      ${qt.length?qt.map(t=>`<div class="qtask ${key==="done"?"done-task":""}" style="border-color:${q.color}">${t.name}${t.due?`<div style="font-size:10px;color:#9ca3af;margin-top:2px">📆 ${t.due}</div>`:""}</div>`).join(''):`<div class="empty">Empty</div>`}
+      ${qt.length?qt.map(t2=>{const cat=getCat(t2.cat);return`<div class="qtask ${key==="done"?"done-task":""}" style="border-color:${q.color}">${t2.name}${cat?`<span style="font-size:9px;font-weight:700;color:${cat.color}"> · ${cat.name}</span>`:''}${t2.due?`<div style="font-size:10px;color:#9ca3af;margin-top:2px">📆 ${t2.due}</div>`:''}</div>`;}).join(''):`<div class="empty">${t('empty')}</div>`}
     </div>`;
-  }).join("");
-
+  }).join('');
   renderSummary();
 }
-
 function renderSummary(){
-  const total=tasks.length,done=tasks.filter(t=>t.done).length,doFirst=tasks.filter(t=>!t.done&&dQ(t)==="do").length,inProg=tasks.filter(t=>!t.done).length;
+  const total=tasks.length,done=tasks.filter(t2=>t2.done).length,doFirst=tasks.filter(t2=>!t2.done&&dQ(t2)==="do").length,inProg=tasks.filter(t2=>!t2.done).length;
   document.getElementById("summaryRow").innerHTML=[
-    {val:total,lbl:"Total Tasks",color:"#6366f1"},{val:doFirst,lbl:"Do First 🔥",color:"#ef4444"},
-    {val:inProg,lbl:"Active",color:"#3b82f6"},{val:done,lbl:"Done ✅",color:"#22c55e"},
-  ].map(s=>`<div class="sum-box"><div class="sum-val" style="color:${s.color}">${s.val}</div><div class="sum-lbl">${s.lbl}</div></div>`).join("");
+    {val:total,lbl:t('sum_total'),color:"#6366f1"},{val:doFirst,lbl:t('sum_do'),color:"#ef4444"},
+    {val:inProg,lbl:t('sum_active'),color:"#3b82f6"},{val:done,lbl:t('sum_done'),color:"#22c55e"},
+  ].map(s=>`<div class="sum-box"><div class="sum-val" style="color:${s.color}">${s.val}</div><div class="sum-lbl">${s.lbl}</div></div>`).join('');
 }
 
 // ── FULLSCREEN ──
-function openFullscreen(){
-  document.getElementById('fsOverlay').classList.add('open');
-  fsOpen=true;
-  renderTasks();
-}
-function closeFullscreen(){
-  document.getElementById('fsOverlay').classList.remove('open');
-  fsOpen=false;
-}
+function openFullscreen(){document.getElementById('fsOverlay').classList.add('open');renderTasks();}
+function closeFullscreen(){document.getElementById('fsOverlay').classList.remove('open');}
 
 // ── TASK MODAL ──
 function openTaskModal(id){
-  const t=tasks.find(t=>t.id===id);if(!t)return;
+  const t2=tasks.find(t2=>t2.id===id);if(!t2)return;
   editTaskId=id;
-  document.getElementById("taskModalTitle").textContent=t.name;
-  document.getElementById("modalDue").value=t.due||"";
-  document.getElementById("modalNotes").value=t.notes||"";
+  document.getElementById("taskModalTitle").textContent=t2.name;
+  document.getElementById("modalCat").innerHTML=catOptions(t2.cat||'');
+  document.getElementById("modalDue").value=t2.due||"";
+  document.getElementById("modalNotes").value=t2.notes||"";
+  document.getElementById("modalNotes").placeholder=t('notes_placeholder');
   document.getElementById("taskOverlay").classList.add("open");
 }
 function closeTaskModal(){document.getElementById("taskOverlay").classList.remove("open");editTaskId=null;}
 function saveTaskModal(){
-  const t=tasks.find(t=>t.id===editTaskId);if(!t)return;
-  t.due=document.getElementById("modalDue").value;
-  t.notes=document.getElementById("modalNotes").value;
+  const t2=tasks.find(t2=>t2.id===editTaskId);if(!t2)return;
+  t2.cat=document.getElementById("modalCat").value;
+  t2.due=document.getElementById("modalDue").value;
+  t2.notes=document.getElementById("modalNotes").value;
   saveTasks();renderTasks();closeTaskModal();
 }
 document.getElementById("taskOverlay").addEventListener("click",function(e){if(e.target===this)closeTaskModal();});
 
 // ── CALENDAR ──
-const EV_COLORS=["#3b82f6","#ef4444","#22c55e","#f59e0b","#8b5cf6","#ec4899","#14b8a6"];
-let events=JSON.parse(localStorage.getItem("marius_events")||"[]");
-let euid=parseInt(localStorage.getItem("marius_euid")||"1");
-let calView="day";
-let calDate=new Date();
-let editEvId=null;
-let selColor=EV_COLORS[0];
-
-function saveEvents(){localStorage.setItem("marius_events",JSON.stringify(events));localStorage.setItem("marius_euid",euid);}
-function setView(v){calView=v;document.querySelectorAll('.vbtn').forEach(b=>b.classList.remove('active'));document.getElementById('vbtn-'+v).classList.add('active');renderCal();}
+let calView="day",calDate=new Date();
+function setView(v){
+  if((v==='week'||v==='workweek')&&calView!=='week'&&calView!=='workweek')calDate=new Date();
+  if(v==='month'&&calView!=='month')calDate=new Date();
+  calView=v;
+  document.querySelectorAll('.vbtn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('vbtn-'+v).classList.add('active');
+  renderCal();
+}
 function calNav(d){
-  if(calView==='day'){calDate=new Date(calDate);calDate.setDate(calDate.getDate()+d);}
-  else if(calView==='week'||calView==='workweek'){calDate=new Date(calDate);calDate.setDate(calDate.getDate()+d*7);}
-  else if(calView==='month'){calDate=new Date(calDate.getFullYear(),calDate.getMonth()+d,1);}
+  if(calView==='day')return;
+  if(calView==='week'||calView==='workweek'){calDate=new Date(calDate);calDate.setDate(calDate.getDate()+d*7);}
+  else{calDate=new Date(calDate.getFullYear(),calDate.getMonth()+d,1);}
   renderCal();
 }
 function goToday(){calDate=new Date();renderCal();}
 function toDateStr(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
-function isToday(d){const t=new Date();return d.getDate()===t.getDate()&&d.getMonth()===t.getMonth()&&d.getFullYear()===t.getFullYear();}
-const HOURS=[];for(let h=0;h<24;h++)HOURS.push((h===0?12:h>12?h-12:h)+':00 '+(h<12?'AM':'PM'));
+function isToday(d){const now=new Date();return d.getDate()===now.getDate()&&d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear();}
+function renderCal(){if(calView==='day')renderDay();else if(calView==='week')renderWeekCal(false);else if(calView==='workweek')renderWeekCal(true);else renderMonth();}
 
-function renderCal(){
-  if(calView==='month')renderMonth();
-  else if(calView==='week')renderWeek(false);
-  else if(calView==='workweek')renderWeek(true);
-  else renderDay();
-}
-function getTaskEvents(ds){
-  return tasks.filter(t=>t.due===ds&&!t.done).map(t=>{
-    const q=Qs[dQ(t)];
-    return{id:'task-'+t.id,title:'📋 '+t.name,color:q.color,isTask:true,taskId:t.id};
+function getTasksForDate(ds){
+  return tasks.filter(t2=>t2.due===ds).map(t2=>{
+    const qs=Qs();const q=qs[dQ(t2)];const cat=getCat(t2.cat);
+    return{taskId:t2.id,title:t2.name,color:t2.done?'#9ca3af':q.color,done:t2.done,cat:cat?cat.name:null,catColor:cat?cat.color:null};
   });
 }
+function taskChip(t2){
+  const strike=t2.done?'text-decoration:line-through;opacity:.6;':'';
+  const catTag=t2.cat?`<span style="font-size:9px;font-weight:700;color:${t2.catColor};margin-left:3px">· ${t2.cat}</span>`:'';
+  return`<div class="cal-event" style="background:${t2.color}18;color:${t2.color};border-left:2px solid ${t2.color};${strike}cursor:pointer;white-space:normal;overflow:visible" onclick="openTaskModal(${t2.taskId})">📋 ${t2.title}${catTag}</div>`;
+}
+
+function renderDay(){
+  const today=new Date(),ds=toDateStr(today);
+  document.getElementById('calTitle').textContent=t('view_day')+' — '+t('days')[today.getDay()]+', '+t('months')[today.getMonth()]+' '+today.getDate()+', '+today.getFullYear();
+  const dayTasks=getTasksForDate(ds);
+  const todayStr=ds;
+  const overdue=tasks.filter(t2=>t2.due&&t2.due<todayStr&&!t2.done).map(t2=>{
+    const qs=Qs();const q=qs[dQ(t2)];const cat=getCat(t2.cat);
+    return{taskId:t2.id,title:t2.name,color:q.color,done:false,cat:cat?cat.name:null,catColor:cat?cat.color:null,due:t2.due};
+  });
+  const activeTasks=dayTasks.filter(t2=>!t2.done),doneTasks=dayTasks.filter(t2=>t2.done);
+  const overdueSection=overdue.length?`
+    <div style="margin-bottom:20px">
+      <div style="font-size:11px;font-weight:700;color:#ef4444;text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">${t('overdue',{n:overdue.length})}</div>
+      ${overdue.map(t2=>`<div class="cal-event" style="background:#fee2e2;color:#ef4444;border-left:3px solid #ef4444;padding:8px 10px;margin-bottom:6px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;white-space:normal" onclick="openTaskModal(${t2.taskId})">
+        <span>📋 ${t2.title}${t2.cat?` <span style="font-size:10px;color:${t2.catColor};font-weight:700">· ${t2.cat}</span>`:''}</span>
+        <span style="font-size:10px;opacity:.7;white-space:nowrap;margin-left:8px">${t('due_label')} ${t2.due}</span>
+      </div>`).join('')}
+    </div>`:'';
+  const activeSection=activeTasks.length?`
+    <div style="margin-bottom:20px">
+      <div style="font-size:11px;font-weight:700;color:#1a56db;text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">${t('due_today',{n:activeTasks.length})}</div>
+      ${activeTasks.map(t2=>`<div class="cal-event" style="background:${t2.color}12;color:${t2.color};border-left:3px solid ${t2.color};padding:8px 10px;margin-bottom:6px;border-radius:8px;cursor:pointer;white-space:normal" onclick="openTaskModal(${t2.taskId})">
+        📋 ${t2.title}${t2.cat?` <span style="font-size:10px;color:${t2.catColor};font-weight:700">· ${t2.cat}</span>`:''}
+      </div>`).join('')}
+    </div>`:'';
+  const doneSection=doneTasks.length?`
+    <div>
+      <div style="font-size:11px;font-weight:700;color:#22c55e;text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">${t('completed_today',{n:doneTasks.length})}</div>
+      ${doneTasks.map(t2=>`<div class="cal-event" style="background:#f0fdf4;color:#9ca3af;border-left:3px solid #22c55e;padding:8px 10px;margin-bottom:6px;border-radius:8px;text-decoration:line-through;cursor:pointer;white-space:normal" onclick="openTaskModal(${t2.taskId})">
+        📋 ${t2.title}${t2.cat?` <span style="font-size:10px;color:${t2.catColor};font-weight:700">· ${t2.cat}</span>`:''}
+      </div>`).join('')}
+    </div>`:'';
+  const noTasks=!activeTasks.length&&!doneTasks.length&&!overdue.length;
+  document.getElementById('calView').innerHTML=`<div class="week-grid" style="padding:20px">${overdueSection}${activeSection}${doneSection}${noTasks?`<div style="text-align:center;padding:32px;color:#9ca3af;font-size:13px">${t('no_tasks_today')}</div>`:''}</div>`;
+}
+
 function renderMonth(){
   const y=calDate.getFullYear(),m=calDate.getMonth();
-  document.getElementById('calTitle').textContent=MONTHS[m]+' '+y;
-  const first=new Date(y,m,1),last=new Date(y,m+1,0);
-  const startDay=first.getDay();
+  document.getElementById('calTitle').textContent=t('months')[m]+' '+y;
+  const first=new Date(y,m,1),last=new Date(y,m+1,0),startDay=first.getDay();
   let cells='';
-  for(let i=0;i<startDay;i++){const d=new Date(y,m,1-startDay+i);cells+=monthCell(d,true);}
-  for(let i=1;i<=last.getDate();i++){cells+=monthCell(new Date(y,m,i),false);}
-  const remaining=(7-((startDay+last.getDate())%7))%7;
-  for(let i=1;i<=remaining;i++){cells+=monthCell(new Date(y,m+1,i),true);}
-  document.getElementById('calView').innerHTML=`<div class="month-grid"><div class="month-dow">${SDAYS.map(d=>`<div>${d}</div>`).join('')}</div><div class="month-days">${cells}</div></div>`;
+  for(let i=0;i<startDay;i++)cells+=monthCell(new Date(y,m,1-startDay+i),true);
+  for(let i=1;i<=last.getDate();i++)cells+=monthCell(new Date(y,m,i),false);
+  const rem=(7-((startDay+last.getDate())%7))%7;
+  for(let i=1;i<=rem;i++)cells+=monthCell(new Date(y,m+1,i),true);
+  document.getElementById('calView').innerHTML=`<div class="month-grid"><div class="month-dow">${t('sdays').map(d=>`<div>${d}</div>`).join('')}</div><div class="month-days">${cells}</div></div>`;
 }
 function monthCell(d,other){
-  const ds=toDateStr(d);
-  const evs=events.filter(e=>e.date===ds);
-  const tevs=getTaskEvents(ds);
-  const todayCls=isToday(d)?'today':'';const otherCls=other?'other-month':'';
-  const evHtml=evs.slice(0,2).map(e=>`<div class="cal-event" style="background:${e.color}22;color:${e.color}" onclick="editEvent(${e.id},event)">${e.title}</div>`).join('');
-  const tevHtml=tevs.slice(0,2).map(e=>`<div class="cal-event" style="background:${e.color}22;color:${e.color};border-left:2px solid ${e.color}" onclick="openTaskModal(${e.taskId})">${e.title}</div>`).join('');
-  return`<div class="month-cell ${todayCls} ${otherCls}" onclick="openNewEvent('${ds}')"><div class="day-num">${d.getDate()}</div>${evHtml}${tevHtml}</div>`;
+  const ds=toDateStr(d),dayTasks=getTasksForDate(ds);
+  const visible=dayTasks.slice(0,3).map(t2=>taskChip(t2)).join('');
+  const more=dayTasks.length>3?`<div style="font-size:10px;color:#6b7280;font-weight:600;padding:2px 4px">+${dayTasks.length-3}</div>`:'';
+  return`<div class="month-cell ${isToday(d)?'today':''} ${other?'other-month':''}"><div class="day-num">${d.getDate()}</div>${visible}${more}</div>`;
 }
-function renderWeek(workweek){
-  const d=new Date(calDate);
-  const dow=d.getDay();
-  const startOffset=workweek?-(dow===0?6:dow-1):-dow;
-  const start=new Date(d);start.setDate(d.getDate()+startOffset);
-  const cols=workweek?5:7;
-  const days=[];for(let i=0;i<cols;i++){const x=new Date(start);x.setDate(start.getDate()+i);days.push(x);}
-  const range=MONTHS[days[0].getMonth()]+' '+days[0].getDate()+' – '+MONTHS[days[cols-1].getMonth()]+' '+days[cols-1].getDate()+', '+days[0].getFullYear();
-  document.getElementById('calTitle').textContent=range;
-  const gridCls=workweek?'week-header-workweek':'';
-  const bodyCls=workweek?'week-body-workweek':'';
-  const heads=days.map(d=>{const tc=isToday(d)?'today-head':'';const td=isToday(d)?'today-date':'';return`<div class="week-col-head ${tc}"><div>${SDAYS[d.getDay()]}</div><div class="wdate ${td}">${d.getDate()}</div></div>`;}).join('');
-  const timeCol=HOURS.map(h=>`<div class="time-slot">${h}</div>`).join('');
-  const dayCols=days.map(d=>{
-    const ds=toDateStr(d);const tc=isToday(d)?'today-col':'';
-    const slots=HOURS.map((_,hi)=>`<div class="day-slot ${tc}" onclick="openNewEvent('${ds}','${String(hi).padStart(2,'0')}:00')"></div>`).join('');
-    const evs=events.filter(e=>e.date===ds);
-    const tevs=getTaskEvents(ds);
-    const evHtml=evs.map(e=>{
-      const sh=parseInt(e.start.split(':')[0]),sm=parseInt(e.start.split(':')[1]);
-      const eh=parseInt(e.end.split(':')[0]),em=parseInt(e.end.split(':')[1]);
-      const top=(sh*60+sm)*48/60,height=Math.max(((eh*60+em)-(sh*60+sm))*48/60,20);
-      return`<div class="week-event" style="top:${top}px;height:${height}px;background:${e.color}22;color:${e.color};border-left:3px solid ${e.color}" onclick="editEvent(${e.id},event)">${e.title}</div>`;
-    }).join('');
-    const tevHtml=tevs.map((e,i)=>`<div class="week-event" style="top:${i*26}px;height:22px;background:${e.color}22;color:${e.color};border-left:3px solid ${e.color}" onclick="openTaskModal(${e.taskId})">${e.title}</div>`).join('');
-    return`<div class="day-col">${slots}${evHtml}${tevHtml}</div>`;
-  }).join('');
-  document.getElementById('calView').innerHTML=`<div class="week-grid"><div class="week-header ${gridCls}"><div></div>${heads}</div><div class="week-body ${bodyCls}"><div class="time-col">${timeCol}</div>${dayCols}</div></div>`;
-}
-function renderDay(){
-  const ds=toDateStr(calDate);
-  const label=DAYS[calDate.getDay()]+', '+MONTHS[calDate.getMonth()]+' '+calDate.getDate()+', '+calDate.getFullYear();
-  document.getElementById('calTitle').textContent=label;
-  const timeCol=HOURS.map(h=>`<div class="time-slot">${h}</div>`).join('');
-  const evs=events.filter(e=>e.date===ds);
-  const slots=HOURS.map((_,hi)=>`<div class="day-slot-wrap" onclick="openNewEvent('${ds}','${String(hi).padStart(2,'0')}:00')"></div>`).join('');
-  const evHtml=evs.map(e=>{
-    const sh=parseInt(e.start.split(':')[0]),sm=parseInt(e.start.split(':')[1]);
-    const eh=parseInt(e.end.split(':')[0]),em=parseInt(e.end.split(':')[1]);
-    const top=(sh*60+sm)*48/60,height=Math.max(((eh*60+em)-(sh*60+sm))*48/60,24);
-    return`<div class="week-event" style="top:${top}px;height:${height}px;background:${e.color}22;color:${e.color};border-left:3px solid ${e.color}" onclick="editEvent(${e.id},event)">${e.title}<div style="font-size:9px;opacity:.7">${e.start}–${e.end}</div></div>`;
-  }).join('');
-  document.getElementById('calView').innerHTML=`<div class="day-grid"><div class="day-header"><h3>${label}</h3></div><div class="day-body"><div class="time-col">${timeCol}</div><div style="position:relative">${slots}${evHtml}</div></div></div>`;
-}
-function buildColorPicker(){
-  document.getElementById('colorOpts').innerHTML=EV_COLORS.map(c=>`<div class="color-opt ${c===selColor?'selected':''}" style="background:${c}" onclick="pickColor('${c}')"></div>`).join('');
-}
-function pickColor(c){selColor=c;buildColorPicker();}
-function openNewEvent(date,time='09:00'){
-  editEvId=null;
-  document.getElementById('evModalTitle').textContent='Add Event';
-  document.getElementById('evTitle').value='';
-  document.getElementById('evDate').value=date;
-  document.getElementById('evStart').value=time;
-  const eh=parseInt(time.split(':')[0])+1;
-  document.getElementById('evEnd').value=String(eh).padStart(2,'0')+':00';
-  document.getElementById('evNotes').value='';
-  selColor=EV_COLORS[0];buildColorPicker();
-  document.getElementById('evModalActions').innerHTML=`<button class="btn-cancel" onclick="closeEvModal()">Cancel</button><button class="btn-save" onclick="saveEvent()">Save</button>`;
-  document.getElementById('evOverlay').classList.add('open');
-}
-function editEvent(id,e){
-  e.stopPropagation();
-  const ev=events.find(ev=>ev.id===id);if(!ev)return;
-  editEvId=id;
-  document.getElementById('evModalTitle').textContent='Edit Event';
-  document.getElementById('evTitle').value=ev.title;
-  document.getElementById('evDate').value=ev.date;
-  document.getElementById('evStart').value=ev.start;
-  document.getElementById('evEnd').value=ev.end;
-  document.getElementById('evNotes').value=ev.notes||'';
-  selColor=ev.color;buildColorPicker();
-  document.getElementById('evModalActions').innerHTML=`<button class="btn-delete" onclick="deleteEvent(${id})">Delete</button><button class="btn-cancel" onclick="closeEvModal()">Cancel</button><button class="btn-save" onclick="saveEvent()">Save</button>`;
-  document.getElementById('evOverlay').classList.add('open');
-}
-function deleteEvent(id){events=events.filter(e=>e.id!==id);saveEvents();closeEvModal();renderCal();}
-function closeEvModal(){document.getElementById('evOverlay').classList.remove('open');editEvId=null;}
-function saveEvent(){
-  const title=document.getElementById('evTitle').value.trim();
-  if(!title){document.getElementById('evTitle').style.borderColor='#ef4444';return;}
-  document.getElementById('evTitle').style.borderColor='#e5e7eb';
-  const ev={id:editEvId||euid++,title,date:document.getElementById('evDate').value,start:document.getElementById('evStart').value,end:document.getElementById('evEnd').value,notes:document.getElementById('evNotes').value,color:selColor};
-  if(editEvId){events=events.map(e=>e.id===editEvId?ev:e);}else{events.push(ev);}
-  saveEvents();closeEvModal();renderCal();
-}
-document.getElementById('evOverlay').addEventListener('click',function(e){if(e.target===this)closeEvModal();});
 
+function renderWeekCal(ww){
+  const d=new Date(calDate),dow=d.getDay();
+  const so=ww?-(dow===0?6:dow-1):-dow;
+  const start=new Date(d);start.setDate(d.getDate()+so);
+  const cols=ww?5:7,days=[];
+  for(let i=0;i<cols;i++){const x=new Date(start);x.setDate(start.getDate()+i);days.push(x);}
+  document.getElementById('calTitle').textContent=t('months')[days[0].getMonth()]+' '+days[0].getDate()+' – '+t('months')[days[cols-1].getMonth()]+' '+days[cols-1].getDate()+', '+days[0].getFullYear();
+  const heads=days.map(d=>{
+    const today=isToday(d);
+    return`<div style="flex:1;padding:10px 8px;text-align:center;font-size:12px;font-weight:700;color:${today?'#1a56db':'#6b7280'};border-right:1px solid #f3f4f6">
+      <div>${t('sdays')[d.getDay()]}</div>
+      <div style="width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:4px auto 0;font-size:18px;font-weight:800;${today?'background:#1a56db;color:#fff':''}">${d.getDate()}</div>
+    </div>`;
+  }).join('');
+  const cols2=days.map(d=>{
+    const ds=toDateStr(d),dayTasks=getTasksForDate(ds);
+    return`<div style="flex:1;padding:8px;border-right:1px solid #f3f4f6;min-height:120px;${isToday(d)?'background:#f0f6ff':''}">
+      ${dayTasks.map(t2=>taskChip(t2)).join('')||`<div style="font-size:11px;color:#e5e7eb;text-align:center;padding-top:16px">—</div>`}
+    </div>`;
+  }).join('');
+  document.getElementById('calView').innerHTML=`<div class="week-grid"><div style="display:flex;border-bottom:2px solid #f3f4f6;background:#f8fafc">${heads}</div><div style="display:flex;align-items:flex-start">${cols2}</div></div>`;
+}
+
+// ── INIT ──
+applyTranslations();
+updateHeroDate();
 renderTasks();
 renderCal();
 </script>
